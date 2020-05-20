@@ -23,9 +23,4 @@ const TitleScreen : FC<IProps> = (props) : JSX.Element => {
     </View>
 }
 
-TitleScreen.defaultProps = {
-    title : "San Juan De Miraflores",
-    bus : "Bus Provincial N°2546"
-}
-
 export default TitleScreen;

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "golden-app",
-    "slug": "golden-app",
+    "name": "golden-application",
+    "slug": "golden-application",
     "platforms": [
       "ios",
       "android",
@@ -12,7 +12,7 @@
     "icon": "./app/assets/icon.png",
     "splash": {
       "image": "./app/assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -21,8 +21,22 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.csscreativos.goldenbus",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCewjtlUJ0Abe05LPC5o_tGFiOJVxrMw84"
+        }
+      }
+    },
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.csscreativos.goldenbus",
+      "buildNumber": "1.0.0",
+      "config" : {
+        "googleMapsApiKey" : "AIzaSyCewjtlUJ0Abe05LPC5o_tGFiOJVxrMw84"
+      },
+      "supportsTablet": false
     }
   }
 }

@@ -1,15 +1,18 @@
 import React, { useContext, FC } from "react";
-import { View, Alert, ScrollView } from "react-native";
+import { View, Alert, ScrollView, ImageSourcePropType } from "react-native";
 import styles from "./styles";
 
 //Components
 import ImageProfile from "./subcomponents/ImageProfile";
 import InputProfile from "./subcomponents/InputProfile";
-import HeaderMenu from "../../Global/HeaderMenu";
+import HeaderMenu from "../../layers/HeaderMenu";
 import ButtonGlobal from "../../layers/ButtonGlobal";
 
 //Extra
 import { AccountContext } from "../../context/AccountContext";
+
+//Images
+const UserDefault : ImageSourcePropType = require("../../../assets/usuario.png");
 
 const Profile : FC = () : JSX.Element => {
     const { _clearAccountUser } = useContext(AccountContext);
@@ -23,7 +26,7 @@ const Profile : FC = () : JSX.Element => {
     return <HeaderMenu title="Perfil de Usuario">
         <View style={styles.container}>
             <ScrollView>
-                <ImageProfile />    
+                <ImageProfile image={UserDefault} username="Billy Paredes Aycho" />    
                 <View style={styles.content_inputs}>
                     <InputProfile 
                         title="Correo Electronico" 

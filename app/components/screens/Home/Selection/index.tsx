@@ -13,7 +13,7 @@ import HeaderMenu from '../../../layers/HeaderMenu';
 import { Secondary } from '../../../config/colors';
 
 //Images
-const BusImage : ImageSourcePropType = require("../../../assets/asiento_bus.png");
+const BusImage : ImageSourcePropType = require("../../../../assets/asiento_bus.png");
 
 const Selection : FC = () : JSX.Element => {
     const navigation = useNavigation();

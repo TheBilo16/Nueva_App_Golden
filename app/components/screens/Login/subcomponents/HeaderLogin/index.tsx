@@ -14,7 +14,7 @@ height = height * 0.45;
 //Images
 const IconGolden = require("../../../../../assets/icon_golden.png");
 
-const HeaderLogin : FC<null> = () : JSX.Element => {
+const HeaderLogin : FC = () : JSX.Element => {
     return <View style={styles.header}>     
         <Svg style={styles.degradado}>
             <Defs>

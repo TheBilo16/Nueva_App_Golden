@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { View, Image, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Image, Text, StyleSheet, ScrollView, ImageSourcePropType } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
@@ -10,7 +10,7 @@ import HeaderMenu from "../../layers/HeaderMenu";
 import { Secondary } from "../../config/colors";
 
 //Images
-const ImageGolden = require("../../assets/images/minilogo.png");
+const ImageGolden : ImageSourcePropType = require("../../../assets/images/minilogo.png");
 
 const About : FC = () : JSX.Element => {
     return <HeaderMenu title="Sobre Nosotros">
@@ -20,7 +20,7 @@ const About : FC = () : JSX.Element => {
                     <Image source={ImageGolden} resizeMode="stretch" />
                 </View>
                 <View style={styles.icon}>
-                    <MaterialCommunityIcons name="office-building" color={Secondary.} size={90} />            
+                    <MaterialCommunityIcons name="office-building"  size={90} />            
                 </View>
                 <View style={styles.text}>
                     <Text style={styles.desc}>

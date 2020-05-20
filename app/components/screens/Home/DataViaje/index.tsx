@@ -10,7 +10,7 @@ import ModalImage from "./subcomponents/ModalImage";
 import HeaderMenu from "../../../layers/HeaderMenu";
 
 //Images
-const AsientoBus  = require("../../../assets/asiento_bus_ocupado.png");
+const AsientoBus : ImageSourcePropType = require("../../../../assets/asiento_bus.png");
 
 const DataViaje : FC = () : JSX.Element => {
     const [ activateModal , setActivateModal ] = useState<boolean>(false);

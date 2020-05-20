@@ -9,11 +9,7 @@ const styles = StyleSheet.create({
     },
     map : {
         width: "100%",
-        height : "55%"
-    },
-    map_data : {
-        width: "100%",
-        height : "45%"
+        height : "100%"
     }
 })
 

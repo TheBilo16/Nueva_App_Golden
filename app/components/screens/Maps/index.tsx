@@ -65,7 +65,7 @@ const AppMaps : FC = () : JSX.Element => {
                     style={styles.map} 
                     region={coords}
                     showsUserLocation={true}
-                    customMapStyle={MapCustom}
+                    // customMapStyle={MapCustom}
                 />
             </View> 
         </HeaderMenu>

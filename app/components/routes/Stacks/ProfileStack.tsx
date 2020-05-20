@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Components
-import ProfileScreen from "../../components/Profile";
+import ProfileScreen from "../../../components/screens/Profile";
 
 const Profile = createStackNavigator();
 

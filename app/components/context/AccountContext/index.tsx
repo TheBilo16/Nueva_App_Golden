@@ -22,7 +22,7 @@ class AccountProvider extends Component<IProps,IState>{
     }
 
     //Refrescar Pantallas
-    private _refreshScreen = () : void => {
+    _refreshScreen = () : void => {
         this.setState({
             isLoading : true,
             isLogged : false
@@ -31,7 +31,7 @@ class AccountProvider extends Component<IProps,IState>{
     }
 
     //Verificar Logeo
-    public _isLogged = async () : Promise<void> => {
+    _isLogged = async () : Promise<void> => {
         try{
             const user = await AsyncStorage.getItem(USER_ID_STORAGE); 
             if(user){
@@ -48,7 +48,7 @@ class AccountProvider extends Component<IProps,IState>{
     }
 
     //Cerrar Sesion
-    public _clearAccountUser = async () : Promise<void> => {
+    _clearAccountUser = async () : Promise<void> => {
         try{
             await AsyncStorage.clear();
             this._refreshScreen();
@@ -62,13 +62,14 @@ class AccountProvider extends Component<IProps,IState>{
     }
 
     render(){
-        const { state , props, _isLogged, _clearAccountUser } = this;
+        const { state , props, _isLogged, _clearAccountUser, _refreshScreen } = this;
         const { children } = props;
 
         return <AccountContext.Provider value={{
             ...state,
             _isLogged,
-            _clearAccountUser
+            _clearAccountUser,
+            _refreshScreen
         }}>
             {children}
         </AccountContext.Provider>
