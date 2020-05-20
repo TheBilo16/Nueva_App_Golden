@@ -6,7 +6,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import HomeStack from './Stacks/HomeStack';
 import RutaStack from "./Stacks/RutaStack";
 import ProfileStack from "./Stacks/ProfileStack";
-import DrawerMenu from "../components/layers/DrawerMenu";
+import DrawerMenu from "../layers/DrawerMenu";
 import AboutStack from "./Stacks/AboutStack"
 
 const DN = createDrawerNavigator();

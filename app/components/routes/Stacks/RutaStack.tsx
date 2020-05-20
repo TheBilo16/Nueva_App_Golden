@@ -2,8 +2,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Components
-import RutaScreen from "../../components/screens/Ruta";
-import MapsScreen from "../../components/screens/Maps";
+import RutaScreen from "../../screens/Ruta";
+import MapsScreen from "../../screens/Maps";
 
 const Ruta = createStackNavigator();
 

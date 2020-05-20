@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Components
-import AboutScreen from "../../components/screens/About";
+import AboutScreen from "../../screens/About";
 
 const About = createStackNavigator();
 

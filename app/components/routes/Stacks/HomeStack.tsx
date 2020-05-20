@@ -2,8 +2,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //Components
-import HomeScreen from "../../components/screens/Home/DataViaje";
-import HomeElection from "../../components/screens/Home/Selection";
+import HomeScreen from "../../screens/Home/DataViaje";
+import HomeElection from "../../screens/Home/Selection";
 
 const Home = createStackNavigator();
 
