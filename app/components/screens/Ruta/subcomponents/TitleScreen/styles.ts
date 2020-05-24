@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Secondary } from "../../../../config/colors";
+import { Secondary } from "../../../../../config/colors";
 
 const padding = 25;
 const styles = StyleSheet.create({

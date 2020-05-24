@@ -7,10 +7,10 @@ import styles from "./styles";
 import TitleBus from "./subcomponents/TitleBus";
 import ImagesPlace from "./subcomponents/ImagesPlace";
 import ModalImage from "./subcomponents/ModalImage";
-import HeaderMenu from "../../../layers/HeaderMenu";
+import HeaderMenu from "../../../../layers/HeaderMenu";
 
 //Images
-const AsientoBus : ImageSourcePropType = require("../../../../assets/asiento_bus.png");
+const AsientoBus : ImageSourcePropType = require("../../../../../assets/asiento_bus.png");
 
 const DataViaje : FC = () : JSX.Element => {
     const [ activateModal , setActivateModal ] = useState<boolean>(false);

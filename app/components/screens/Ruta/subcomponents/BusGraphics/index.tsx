@@ -8,7 +8,7 @@ import TextCenter from "../TextCenter";
 
 //Extras
 import { IBus } from "../../interfaces";
-import { Secondary } from "../../../../config/colors";
+import { Secondary } from "../../../../../config/colors";
 
 const { width } = Dimensions.get("screen");
 

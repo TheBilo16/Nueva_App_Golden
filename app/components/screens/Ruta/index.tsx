@@ -10,7 +10,7 @@ import ButtonNavigation from './subcomponents/ButtonNavigation';
 import HeaderMenu from '../../layers/HeaderMenu';
 
 //Extra
-import { Utilies, Secondary } from '../../config/colors';
+import { Utilies, Secondary } from '../../../config/colors';
 import { IBus } from "./interfaces";
 
 const Ruta : FC = () : JSX.Element => {

@@ -3,8 +3,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 //Components
-import HomeStack from './Stacks/HomeStack';
-import RutaStack from "./Stacks/RutaStack";
+import Home from "../screens/Home";
+import RutaScreen from "../screens/Ruta";
+import MapsScreen from "../screens/Maps";
+
+//Stacks
 import ProfileStack from "./Stacks/ProfileStack";
 import DrawerMenu from "../layers/DrawerMenu";
 import AboutStack from "./Stacks/AboutStack"
@@ -19,8 +22,9 @@ const AppStack : FC = () => {
             keyboardDismissMode="none"
             drawerContent={ props => <DrawerMenu {...props} /> }
         >
-            <DN.Screen name="Home" component={HomeStack} />
-            <DN.Screen name="Routes" component={RutaStack} />
+            <DN.Screen name="Home" component={Home} />
+            <DN.Screen name="Routes" component={RutaScreen} />
+            <DN.Screen name="Map" component={MapsScreen} />
             <DN.Screen name="Profile" component={ProfileStack} />
             <DN.Screen name="About" component={AboutStack} />
         </DN.Navigator>

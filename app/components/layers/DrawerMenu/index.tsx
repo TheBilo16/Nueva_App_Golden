@@ -1,5 +1,5 @@
 import React, { useContext, FC } from "react";
-import { View , Alert } from "react-native";
+import { View  } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -9,17 +9,11 @@ import UserProfile from "./subcomponents/UserProfile";
 
 //Extras
 import { AccountContext } from "../../context/AccountContext";
-import { MESSAGE_LOGOUT, MESSAGE_LOGOUT_OK, MESSAGE_LOGOUT_CANCEL } from "../../config/user";
+import { MessageLogout } from "../../../services";
 
-const DrawerMenu : FC = (props : any) : JSX.Element =>{
+const DrawerMenu : FC<any> = (props) : JSX.Element =>{
     const { _clearAccountUser } = useContext(AccountContext);
-
-    const logout_user = () => {
-        Alert.alert("",MESSAGE_LOGOUT,[
-            { text : MESSAGE_LOGOUT_OK, onPress : () => _clearAccountUser ? _clearAccountUser() : null},
-            { text : MESSAGE_LOGOUT_CANCEL }
-        ]);
-    }
+    const logout_user = () => MessageLogout(_clearAccountUser);
 
     return <View style={{ flex : 1 }}>
         <DrawerContentScrollView {...props} >
@@ -33,9 +27,16 @@ const DrawerMenu : FC = (props : any) : JSX.Element =>{
             </View>
             <View style={styles.button}>
                 <DrawerItem 
-                    label="Viaje"
+                    label="Paraderos"
                     icon={({ color, size }) => <MaterialCommunityIcons name="map-outline" color={color} size={size} /> }
                     onPress={() => props.navigation.navigate("Routes") }
+                />                
+            </View>
+            <View style={styles.button}>
+                <DrawerItem 
+                    label="Mapa"
+                    icon={({ color, size }) => <MaterialCommunityIcons name="map-outline" color={color} size={size} /> }
+                    onPress={() => props.navigation.navigate("Map") }
                 />                
             </View>
             <View style={styles.button}>

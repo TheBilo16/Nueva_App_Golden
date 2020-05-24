@@ -3,7 +3,7 @@ import { View, Image, ActivityIndicator, ImageSourcePropType, TouchableOpacity }
 import styles from "./styles";
 
 //Extra
-import { Secondary } from "../../../../../config/colors";
+import { Secondary } from "../../../../../../../config/colors";
 
 interface IProps {
     image : ImageSourcePropType,

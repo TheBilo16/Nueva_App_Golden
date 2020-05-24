@@ -2,14 +2,10 @@ import React , { Component , createContext,  } from "react";
 import { AsyncStorage } from "react-native";
 
 //Extra
-import { USER_ID_STORAGE } from "../../config/user";
+import { USER_ID_STORAGE } from "../../../config/user";
 import { IProps , IState, IContext } from "./interfaces";
 
-const AccountContext = createContext<IContext>({
-    isLoading : true,
-    isLogged : false,
-    userId : ""
-});
+const AccountContext = createContext<Partial<IContext>>({});
 
 class AccountProvider extends Component<IProps,IState>{
     constructor(props : IProps){

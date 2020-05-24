@@ -6,9 +6,9 @@ interface IState {
 }
 
 interface IContext extends IState {
-    _isLogged?() : Promise<void>,
-    _clearAccountUser?() : Promise<void>,
-    _refreshScreen?() : void
+    _isLogged() : Promise<void>,
+    _clearAccountUser() : Promise<void>,
+    _refreshScreen() : void
 }
 
 export {

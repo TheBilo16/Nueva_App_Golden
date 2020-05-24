@@ -5,7 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 //Extra
-import { Base } from "../../../../config/colors";
+import { Base } from "../../../../../config/colors";
 
 //Dimensions
 var { width , height } = Dimensions.get("window");

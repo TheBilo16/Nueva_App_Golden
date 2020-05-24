@@ -10,6 +10,7 @@ import ButtonGlobal from "../../layers/ButtonGlobal";
 
 //Extra
 import { AccountContext } from "../../context/AccountContext";
+import { MessageLogout } from "../../../services";
 
 //Images
 const UserDefault : ImageSourcePropType = require("../../../assets/usuario.png");
@@ -17,10 +18,7 @@ const UserDefault : ImageSourcePropType = require("../../../assets/usuario.png")
 const Profile : FC = () : JSX.Element => {
     const { _clearAccountUser } = useContext(AccountContext);
     const onPressButtonLogOut = () => {
-        Alert.alert("","¿Desea cerrar su sesión?",[
-            { text : "Ok", onPress : () => _clearAccountUser ? _clearAccountUser() : null },
-            { text : "Cancel" }
-        ]);
+        MessageLogout(_clearAccountUser);
     }
 
     return <HeaderMenu title="Perfil de Usuario">

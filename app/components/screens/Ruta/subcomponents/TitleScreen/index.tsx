@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 //Extra
-import { Secondary } from "../../../../config/colors";
+import { Secondary } from "../../../../../config/colors";
 
 interface IProps {
     title : string,

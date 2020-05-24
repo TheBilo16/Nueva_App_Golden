@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Secondary } from "../../../../config/colors";
+import { Secondary } from "../../../../../config/colors";
 
 const { width } = Dimensions.get("screen");
 const border_line = 3;

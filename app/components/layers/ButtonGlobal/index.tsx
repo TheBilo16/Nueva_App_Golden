@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import GradientButton from "react-native-gradient-buttons";
 
 //Extra
-import { Base , Secondary  } from "../../config/colors";
+import { Base , Secondary  } from "../../../config/colors";
 import { IProps } from "./interface";
 
 const ButtonGlobal : FC<IProps> = (props) : JSX.Element => {

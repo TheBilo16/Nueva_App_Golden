@@ -1,6 +1,6 @@
-// import 'react-native-gesture-handler';
 import React, { useContext } from "react";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { DotIndicator } from "react-native-indicators";
 
 //Context
 import { AccountContext } from './context/AccountContext';
@@ -12,7 +12,7 @@ import LoginStack from "./routes/LoginStack";
 import AppStack from "./routes/AppStack";
 
 //Extras
-import { Secondary } from './config/colors';
+import { Secondary } from '../config/colors';
 
 const styles = StyleSheet.create({
     loading_screen : {
@@ -35,9 +35,7 @@ const Main = () : JSX.Element => {
         }else 
             return <LoginStack />     
     }else{
-        return <View style={styles.loading_screen}>
-            <ActivityIndicator size={60} color={Secondary.text_link}  />
-        </View>
+        return <DotIndicator color={Secondary.text_link} />
     }
 }
 

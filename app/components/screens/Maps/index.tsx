@@ -9,7 +9,7 @@ import styles from "./styles";
 import HeaderMenu from "../../layers/HeaderMenu";
 
 //Extra
-import { Secondary } from "../../config/colors";
+import { Secondary } from "../../../config/colors";
 import MapCustom from "./config/MapCustom.json";
 
 interface IStateCoords extends Region {
