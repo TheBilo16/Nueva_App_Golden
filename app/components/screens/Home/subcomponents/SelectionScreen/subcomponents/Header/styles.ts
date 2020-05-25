@@ -1,9 +1,14 @@
 import { StyleSheet } from "react-native";
 import { Secondary } from "../../../../../../../config/colors";
+import { screen_home } from "../../../../../../../config/styles";
+
+const { height_header_a, height_header_b } = screen_home;
 
 const styles = StyleSheet.create({
     content_title : {
-        padding : 20
+        height: height_header_a,
+        justifyContent : "center",
+        paddingHorizontal : 20
     },
     text_central : {
         fontSize : 18,
@@ -12,9 +17,10 @@ const styles = StyleSheet.create({
         color : Secondary.text_dark
     },
     content_instructions : {
+        height : height_header_b,
         backgroundColor: "rgb(240,240,240)",
         paddingHorizontal : 20,
-        paddingVertical: 10
+        justifyContent : "center"
     },
     content_information : {
         flexDirection :"row",

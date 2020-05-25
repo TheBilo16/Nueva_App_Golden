@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { Image , ImageSourcePropType } from "react-native";
+import React, { FC, useState } from "react";
+import { View , Image , ImageSourcePropType, TouchableOpacity } from "react-native";
 import styles from "./styles";
 
 //Images
@@ -7,16 +7,32 @@ const AsientoDisponible : ImageSourcePropType = require("../../../../../../../..
 const AsientoOcupado : ImageSourcePropType = require("../../../../../../../../../assets/icons/asientoOcupado.png");
 
 interface IProps {
-    disponible : boolean
+    disponible : boolean,
+    onPress?(setSeleccion : any) : void
 }
 
 const Asiento : FC<IProps> = (props) : JSX.Element => {
-    const { disponible } = props;
+    const [ seleccionado , setSeleccionado ] = useState<boolean>(false);
+    const { disponible, onPress } = props;
+
+    const onPressSelect = () => {
+        onPress ? onPress(setSeleccionado) : null;
+    }
     
-    if(disponible) 
-        return <Image style={styles.image} resizeMode="stretch" source={AsientoDisponible} />
-    else
-        return <Image style={styles.image} resizeMode="stretch" source={AsientoOcupado} />
+    return <TouchableOpacity style={styles.divPress} onPress={onPressSelect}>
+        {
+            disponible ? 
+                <Image style={styles.image} resizeMode="stretch" source={AsientoDisponible} /> :
+                <Image style={styles.image} resizeMode="stretch" source={AsientoOcupado} />
+        }
+        {
+            seleccionado ?
+                <View style={styles.eleccion}>
+                    <View style={styles.symbol}></View>
+                </View> :
+                null
+        } 
+    </TouchableOpacity>
 }
 
 export default Asiento;

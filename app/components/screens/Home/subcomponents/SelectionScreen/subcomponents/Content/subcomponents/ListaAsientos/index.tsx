@@ -1,16 +1,25 @@
-import React, { FC } from "react";
-import { Text } from "react-native";
-import { IPropsList } from "../../interface";
-import Asiento from "../Asiento";
+import React, { FC, useContext } from "react";
+import { View } from "react-native";
+import styles from "./styles";
 
-const ListaAsientos : FC<IPropsList> = (props) : JSX.Element => {
-    const { list } = props;
+//Componentes
+import { ScrollView } from "react-native-gesture-handler";
+import { HomeContext } from "../../../../../../context";
 
-    return <>
-        {
-            list.map((v,i) => <Asiento key={i} disponible={v.disponible} />)
-        }
-    </>
+//Hooks
+const ListaAsientos : FC = () : JSX.Element => {
+    const { filasBus } = useContext(HomeContext);
+
+    return <ScrollView style={styles.scroll}>
+        <View style={styles.contenedor_asientos}>
+            <View style={styles.fila}>
+                {filasBus.fila_a}
+            </View>
+            <View style={styles.fila}>
+                {filasBus.fila_b}
+            </View>
+        </View>
+    </ScrollView>
 }
 
 export default React.memo(ListaAsientos);

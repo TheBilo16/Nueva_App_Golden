@@ -1,20 +1,27 @@
 import React, { FC } from "react";
-import { View } from "react-native";
+// import { BallIndicator } from "react-native-indicators";
 
 //Components
-import Selection from "./subcomponents/SelectionScreen";
-import DataViaje from "./subcomponents/MainScreen";
-import useSelection from "./hooks/useSelection";
+import SelectionScreen from "./subcomponents/SelectionScreen";
+import MainScreen from "./subcomponents/MainScreen";
+import useChekingAsiento from "./hooks/useChekingAsiento";
+
+//Context
+import { HomeProvider } from "./context";
+import HeaderMenu from "../../layers/HeaderMenu";
 
 const Home : FC = () : JSX.Element => {
-    const { loading , asientoSeleccionado } = useSelection();
+    const { loading , asientoSeleccionado } = useChekingAsiento();
 
-    if(loading) return <View></View>
-
-    if(!asientoSeleccionado) 
-        return <Selection />
-    else 
-        return <DataViaje />
+    return <HeaderMenu title="Inicio">
+        {
+            !loading ?
+                <HomeProvider>
+                    { !asientoSeleccionado ? <SelectionScreen /> : <MainScreen /> }
+                </HomeProvider> :
+                null
+        }
+    </HeaderMenu>
 }
 
 export default Home;

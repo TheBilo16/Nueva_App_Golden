@@ -28,7 +28,7 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
             <View style={styles.button}>
                 <DrawerItem 
                     label="Paraderos"
-                    icon={({ color, size }) => <MaterialCommunityIcons name="map-outline" color={color} size={size} /> }
+                    icon={({ color, size }) => <MaterialCommunityIcons name="routes" color={color} size={size} /> }
                     onPress={() => props.navigation.navigate("Routes") }
                 />                
             </View>

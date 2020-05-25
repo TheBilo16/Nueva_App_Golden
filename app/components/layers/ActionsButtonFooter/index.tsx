@@ -6,16 +6,18 @@ import styles from "./styles";
 import ActionButton from "./subcomponents/ActionButton";
 
 interface IProps {
+    titleButton : string,
+    titleMainButton : string,
     onPressButton() : void,
     onPressMainButton() : void
 }
 
 const ActionsButonFooter : FC<IProps> = (props) : JSX.Element => {
-    const { onPressButton , onPressMainButton } = props;
+    const { titleButton, titleMainButton, onPressButton , onPressMainButton } = props;
 
     return <View style={styles.container_buttons}>
-        <ActionButton ghost title="Borrar Seleccion" onPress={onPressButton} />
-        <ActionButton title="Elegir Asiento" onPress={onPressMainButton} />
+        <ActionButton ghost title={titleButton} onPress={onPressButton} />
+        <ActionButton title={titleMainButton} onPress={onPressMainButton} />
     </View>
 }
 

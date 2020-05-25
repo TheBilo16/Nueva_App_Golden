@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { DotIndicator } from "react-native-indicators";
 
 //Context

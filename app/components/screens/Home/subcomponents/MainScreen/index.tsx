@@ -1,50 +1,25 @@
-import React, { FC, useState } from "react";
-import { View, Image, Text, ImageSourcePropType } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import styles from "./styles";
+import React , { FC, Fragment } from "react";
+import { View } from "react-native";
+import ActionsButtonFooter from "../../../../layers/ActionsButtonFooter";
+import { useNavigation } from "@react-navigation/native";
 
-//Components
-import TitleBus from "./subcomponents/TitleBus";
-import ImagesPlace from "./subcomponents/ImagesPlace";
-import ModalImage from "./subcomponents/ModalImage";
-import HeaderMenu from "../../../../layers/HeaderMenu";
+const MainScreen : FC = () : JSX.Element => {
+    const navigation = useNavigation();
 
-//Images
-const AsientoBus : ImageSourcePropType = require("../../../../../assets/asiento_bus.png");
+    const onPressButton = () : void => navigation.navigate("Routes");
+    const onPressMainButton = () : void => navigation.navigate("Map");
 
-const DataViaje : FC = () : JSX.Element => {
-    const [ activateModal , setActivateModal ] = useState<boolean>(false);
-    const [ imageModal , setImageModal ] = useState<ImageSourcePropType>(0);
+    return <View style={{ flex : 1, backgroundColor : "#fff" }}>
+        <View style={{ flex : 1 }}>
 
-    const onActiveModal = (image : ImageSourcePropType) : void => {
-        if(!activateModal){
-            setActivateModal(true);
-            setImageModal(image);
-        }else{
-            setActivateModal(false);
-        }
-    }
-
-    return <HeaderMenu title="Inicio">
-        <View style={styles.container}>
-            <ScrollView>
-                <View style={styles.container_image}>
-                    <Text style={styles.image_title}>Asiento 23</Text>
-                    <Image source={AsientoBus} style={styles.image} />
-                </View>
-                <View style={{alignItems : "center"}}>
-                    <TitleBus title="Procedencia" description="Lima / Callao" />
-                    <TitleBus title="Destino" description="San Juan de Miraflores" />                
-                </View>
-                <ImagesPlace onPress={onActiveModal} />
-            </ScrollView>
-            <ModalImage 
-                image={imageModal} 
-                active={activateModal}
-                onPress={onActiveModal}
-            />
         </View>
-    </HeaderMenu>
+        <ActionsButtonFooter
+            titleButton="Ver Rutas"
+            titleMainButton="Ver Mapa"
+            onPressButton={onPressButton} 
+            onPressMainButton={onPressMainButton} 
+        />
+    </View>
 }
 
-export default DataViaje;
+export default MainScreen;
