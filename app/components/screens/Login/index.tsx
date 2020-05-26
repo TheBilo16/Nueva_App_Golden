@@ -1,21 +1,15 @@
 import React, { useState, useContext, FC } from "react";
-import { 
-    View, 
-    Text,
-    AsyncStorage,
-    KeyboardAvoidingView,
-    TouchableOpacity
-} from "react-native";
+import { View, AsyncStorage, KeyboardAvoidingView } from "react-native";
 import styles from "./styles";
 
 //Components
-import InputLogin from "./subcomponents/InputLogin";
-import HeaderLogin from "./subcomponents/HeaderLogin";
+import Input from "./subcomponents/Input";
+import Header from "./subcomponents/Header";
 import ButtonGlobal from "../../layers/ButtonGlobal";
 
 //Extra
 import { AccountContext } from "../../context/AccountContext";
-import { USER_ID_STORAGE } from "../../../config/user";
+import { USER_ID_STORAGE } from "../../../config/system";
 
 
 const Login : FC = () : JSX.Element => {
@@ -23,7 +17,7 @@ const Login : FC = () : JSX.Element => {
     const [ codeUser, setCode ] = useState<string>("");
     const [ password, setPassword ] = useState<string>("");
 
-    const LoginVerify = async () : Promise<void> => {
+    const dataVerification = async () : Promise<void> => {
         if(codeUser && password){
 
             const informationUser = JSON.stringify({
@@ -33,7 +27,7 @@ const Login : FC = () : JSX.Element => {
 
             try{
                 await AsyncStorage.setItem(USER_ID_STORAGE,informationUser);
-                _refreshScreen();
+                _refreshScreen!();
             }catch(e){
                 console.log(e);
             }
@@ -42,24 +36,18 @@ const Login : FC = () : JSX.Element => {
         }
     }
 
-    const RegisterScreen = () : void => {
-        alert("En Construccion...");
-    }
-
     return <View style={styles.container}>
-        <HeaderLogin />
+        <Header />
         <KeyboardAvoidingView behavior="padding">
             <View style={styles.container_input}>
-                <InputLogin title="Codigo" icon="person-outline" action={setCode} />
-                <InputLogin title="Password" icon="lock-outline" securityPassword={true} action={setPassword} />
+                <Input title="Codigo" icon="person-outline" onPress={setCode} />
+                <Input title="Password" icon="lock-outline" securityPassword={true} onPress={setPassword} />
             </View>
-            <View style={styles.container_text_link}>
+            {/* <View style={styles.container_text_link}>
                 <Text style={styles.text_normal}>¿Olvido su contraseña?</Text>
-                <TouchableOpacity onPress={RegisterScreen}>
-                    <Text style={styles.text_link}>Click aqui</Text>
-                </TouchableOpacity>
-            </View>
-            <ButtonGlobal text="Login" action={LoginVerify} />
+                <Text style={styles.text_link}>Click aqui</Text>
+            </View> */}
+            <ButtonGlobal text="Login" onPress={dataVerification} />
         </KeyboardAvoidingView>    
     </View> 
 }

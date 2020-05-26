@@ -5,7 +5,7 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 //Components
-import UserProfile from "./subcomponents/UserProfile";
+import UserProfile from "./subcomponents/UserSection";
 
 //Extras
 import { AccountContext } from "../../context/AccountContext";
@@ -13,7 +13,7 @@ import { MessageLogout } from "../../../services";
 
 const DrawerMenu : FC<any> = (props) : JSX.Element =>{
     const { _clearAccountUser } = useContext(AccountContext);
-    const logout_user = () => MessageLogout(_clearAccountUser);
+    const logout_user = () => MessageLogout(_clearAccountUser!);
 
     return <View style={{ flex : 1 }}>
         <DrawerContentScrollView {...props} >

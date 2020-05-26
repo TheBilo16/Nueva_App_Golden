@@ -7,7 +7,7 @@ import { Base , Secondary  } from "../../../config/colors";
 import { IProps } from "./interface";
 
 const ButtonGlobal : FC<IProps> = (props) : JSX.Element => {
-    const { styles_button, text, children, action } = props;
+    const { styles_button, text, children, onPress } = props;
     const style = StyleSheet.create({
         container_button : {
             width : "100%",
@@ -37,7 +37,7 @@ const ButtonGlobal : FC<IProps> = (props) : JSX.Element => {
                 radius={0}
                 textStyle={style.text}
                 gradientDirection="vertical"
-                onPressAction={action}
+                onPressAction={onPress}
             />
         </>
     </View>

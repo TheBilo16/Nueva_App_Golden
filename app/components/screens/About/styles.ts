@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
-import { Secondary } from "../../../config/colors";
+import { StyleSheet, Dimensions } from "react-native";
+import { Secondary, Base } from "../../../config/colors";
+import { global } from "../../../config/styles";
 
 const styles = StyleSheet.create({
     container : {
         flex : 1,
         backgroundColor : "#fff",
-        paddingVertical : 30
+    },
+    global_container : {
+        flex : 1
     },
     container_image : {
-        paddingTop : 10,
         alignItems : "center",
-    },
-    icon : {
-        paddingVertical : 25,
-        alignItems : "center",
+        paddingVertical : 20
     },
     text : {
+        backgroundColor : "rgb(245,245,245)",
         paddingVertical: 20,
         paddingHorizontal : 30
     },
@@ -24,18 +24,17 @@ const styles = StyleSheet.create({
         textAlign : "center",
         fontSize : 14
     },
-    about: {
-        width: "100%",
-        paddingHorizontal: 20,
-        paddingVertical: 30,
+    footer : {
+        height : global.height_footer_actions,
+        backgroundColor : Base.yellow,
         flexDirection : "row",
-        justifyContent : "flex-end",
-        alignItems : "flex-end"
+        alignItems : "center",
+        justifyContent : "space-around"
     },
-    text_about : {
-        color: Secondary.text_link,
-        paddingLeft: 5,
-        fontSize : 12
+    text_footer : {
+        color : "#fff",
+        fontSize : 13,
+        fontWeight : "bold"
     }
 })
 

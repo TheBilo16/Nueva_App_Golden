@@ -5,7 +5,7 @@ import { DotIndicator } from "react-native-indicators";
 //Context
 import { AccountContext } from './context/AccountContext';
 import { UserProvider } from './context/UserContext';
-import { ViajeProvider } from './context/ViajeContext';
+import { TravelProvider } from './context/TravelContext';
 
 //Stacks Navigators
 import LoginStack from "./routes/LoginStack";
@@ -28,9 +28,9 @@ const Main = () : JSX.Element => {
     if(!isLoading){
         if(isLogged){
             return <UserProvider>
-                <ViajeProvider>
+                <TravelProvider>
                     <AppStack />
-                </ViajeProvider>
+                </TravelProvider>
             </UserProvider>
         }else 
             return <LoginStack />     

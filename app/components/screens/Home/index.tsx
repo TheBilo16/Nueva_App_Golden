@@ -2,12 +2,12 @@ import React, { FC } from "react";
 // import { BallIndicator } from "react-native-indicators";
 
 //Components
-import SelectionScreen from "./subcomponents/SelectionScreen";
+import BusSeatSelection from "./subcomponents/BusSeatSelection";
 import MainScreen from "./subcomponents/MainScreen";
 import useChekingAsiento from "./hooks/useChekingAsiento";
 
 //Context
-import { HomeProvider } from "./context";
+import { BusSeatSelectionProvider } from "./context/BusSeatSelectionContext";
 import HeaderMenu from "../../layers/HeaderMenu";
 
 const Home : FC = () : JSX.Element => {
@@ -16,10 +16,12 @@ const Home : FC = () : JSX.Element => {
     return <HeaderMenu title="Inicio">
         {
             !loading ?
-                <HomeProvider>
-                    { !asientoSeleccionado ? <SelectionScreen /> : <MainScreen /> }
-                </HomeProvider> :
-                null
+                !asientoSeleccionado ? 
+                    <BusSeatSelectionProvider>
+                        <BusSeatSelection />
+                    </BusSeatSelectionProvider> : 
+                    <MainScreen /> 
+                : null
         }
     </HeaderMenu>
 }

@@ -3,7 +3,7 @@ import { View } from "react-native";
 import styles from "./styles";
 
 //Components
-import ActionButton from "./subcomponents/ActionButton";
+import ActionButton from "../ActionButton";
 
 interface IProps {
     titleButton : string,

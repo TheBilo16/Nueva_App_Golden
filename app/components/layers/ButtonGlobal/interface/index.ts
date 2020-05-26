@@ -7,7 +7,7 @@ interface IStyles{
 
 interface IProps {
     text : string,
-    action() : any,
+    onPress() : void,
     styles_button? : IStyles,
 }
 

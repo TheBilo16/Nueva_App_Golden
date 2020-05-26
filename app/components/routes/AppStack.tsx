@@ -4,13 +4,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 //Components
 import Home from "../screens/Home";
-import RutaScreen from "../screens/Ruta";
-import MapsScreen from "../screens/Maps";
+import TravelRoute from "../screens/TravelRoute";
+import Map from "../screens/Map";
 
 //Stacks
 import ProfileStack from "./Stacks/ProfileStack";
 import DrawerMenu from "../layers/DrawerMenu";
-import AboutStack from "./Stacks/AboutStack"
+import About from "../screens/About";
 
 const DN = createDrawerNavigator();
 
@@ -23,10 +23,10 @@ const AppStack : FC = () => {
             drawerContent={ props => <DrawerMenu {...props} /> }
         >
             <DN.Screen name="Home" component={Home} />
-            <DN.Screen name="Routes" component={RutaScreen} />
-            <DN.Screen name="Map" component={MapsScreen} />
+            <DN.Screen name="Routes" component={TravelRoute} />
+            <DN.Screen name="Map" component={Map} />
             <DN.Screen name="Profile" component={ProfileStack} />
-            <DN.Screen name="About" component={AboutStack} />
+            <DN.Screen name="About" component={About} />
         </DN.Navigator>
     </NavigationContainer>
 }

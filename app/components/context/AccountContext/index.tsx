@@ -2,7 +2,7 @@ import React , { Component , createContext,  } from "react";
 import { AsyncStorage } from "react-native";
 
 //Extra
-import { USER_ID_STORAGE } from "../../../config/user";
+import { USER_ID_STORAGE } from "../../../config/system";
 import { IProps , IState, IContext } from "./interfaces";
 
 const AccountContext = createContext<Partial<IContext>>({});
@@ -46,7 +46,7 @@ class AccountProvider extends Component<IProps,IState>{
     //Cerrar Sesion
     _clearAccountUser = async () : Promise<void> => {
         try{
-            await AsyncStorage.clear();
+            await AsyncStorage.removeItem(USER_ID_STORAGE);
             this._refreshScreen();
         }catch(e){
             console.log(e);
