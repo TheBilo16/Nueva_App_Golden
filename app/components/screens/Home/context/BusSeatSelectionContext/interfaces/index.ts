@@ -30,5 +30,6 @@ interface IState {
 export {
     IBusRowData,
     IContextSeatData,
-    IState
+    IState,
+    IStateBusRow
 }

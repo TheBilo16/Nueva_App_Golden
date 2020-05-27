@@ -1,54 +1,42 @@
-import React , { createContext, Component } from "react";
+import React , { createContext, Component, FC, useState, useEffect } from "react";
 
 //Components
 import Seat from "../../subcomponents/BusSeatSelection/subcomponents/Content/subcomponents/Seat";
 
 //Extras
-import { IState, IBusRowData, IContextSeatData } from "./interfaces";
-
+import { IStateBusRow, IBusRowData, IContextSeatData } from "./interfaces";
 
 const BusSeatSelectionContext = createContext<Partial<IContextSeatData>>({});
 
-class BusSeatSelectionProvider extends Component<{},IState>{
-    constructor(props : {}){
-        super(props);
-        this.state = {
-            seatRows : {
-                row_a : [],
-                row_b : []
-            },
-            selectedSeat : false
-        }
-    }
+const BusSeatSelectionProvider : FC = (props) : JSX.Element => {
+    const [ seatRows , setSeatRows ] = useState<IStateBusRow>();
+    const [ selectedSeat , setSelectedSeat ] = useState<boolean>(false);
 
-    //Al presionar en el Asiento
-    onPressImage = (setSelected : any) : void => {
-        const { selectedSeat } = this.state;
-
+    // Al presionar en el Asiento
+    const onPressImage = (setSelected : any) : void => {
         if(!selectedSeat){
             setSelected(true);
-            this.setState({ selectedSeat : true });
+            setSelectedSeat(true);
         }
     }
 
     //Al presionar en el boton de elegir
-    onPressAccept = () : void => {
+    const onPressAccept = () : void => {
     }
 
     //Al presionar en el boton de borrar
-    onPressClear = () : void => {
-        const { selectedSeat } = this.state;
-
+    const onPressClear = () : void => {
         if(selectedSeat){
-            this.setState({ seatRows : { row_a : [], row_b : [] }, selectedSeat : false })
-            this.getSeats();
+            setSeatRows({ row_a : [], row_b : [] });
+            setSelectedSeat(false);
+            getSeats();
         }else{
             alert("Selecciona un Asiento Porfavor.");
         }
     }
 
     //Peticion de la informacion de los asientos
-    requestBusRows = async () : Promise<IBusRowData> => {
+    const requestBusRows = async () : Promise<IBusRowData> => {
         const data : IBusRowData = {
             row_a : [
                 {
@@ -164,41 +152,32 @@ class BusSeatSelectionProvider extends Component<{},IState>{
     }
 
     //Crear los Asientos
-    createSeatComponent = (mapData : IBusRowData) => {
-        const { onPressImage } = this;
-
-        this.setState({
-            seatRows : {
-                row_a : mapData.row_a.map((v,i) => <Seat onPress={onPressImage} available={v.available} key={i} />),
-                row_b : mapData.row_b.map((v,i) => <Seat onPress={onPressImage} available={v.available} key={i} />)
-            }
+    const createSeatComponent = (mapData : IBusRowData) => {
+        setSeatRows({
+            row_a : mapData.row_a.map((v,i) => <Seat onPress={onPressImage} available={v.available} key={i} />),
+            row_b : mapData.row_b.map((v,i) => <Seat onPress={onPressImage} available={v.available} key={i} />)
         })
+
     }
 
     //Obtener Los Asientos
-    getSeats = async () => {
-        const mapData = await this.requestBusRows();
-        this.createSeatComponent(mapData);
+    const getSeats = async () => {
+        const mapData = await requestBusRows();
+        createSeatComponent(mapData);
     }
 
-    UNSAFE_componentWillMount(){
-        this.getSeats();
-    }
+    useEffect(() => {
+        getSeats();
+    },[])
 
-    render(){
-        const { state, props, onPressImage, onPressClear, onPressAccept } = this;
-        const { children } = props;
-        const { seatRows } = state;
-
-        return <BusSeatSelectionContext.Provider value={{
-            seatRows,
-            onPressImage,
-            onPressClear,
-            onPressAccept
-        }}>
-            {children}
-        </BusSeatSelectionContext.Provider>
-    }
+    return <BusSeatSelectionContext.Provider value={{
+        seatRows,
+        onPressImage,
+        onPressClear,
+        onPressAccept
+    }}>
+        { props.children }
+    </BusSeatSelectionContext.Provider>
 }
 
 export {
