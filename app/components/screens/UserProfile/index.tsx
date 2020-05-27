@@ -10,7 +10,7 @@ import ButtonGlobal from "../../layers/ButtonGlobal";
 
 //Extra
 import { AccountContext } from "../../context/AccountContext";
-import { MessageLogout } from "../../../services";
+import { logoutMessage } from "../../../services/Utility";
 
 //Images
 const UserDefault : ImageSourcePropType = require("../../../assets/usuario.png");
@@ -18,7 +18,7 @@ const UserDefault : ImageSourcePropType = require("../../../assets/usuario.png")
 const UserProfile : FC = () : JSX.Element => {
     const { _clearAccountUser } = useContext(AccountContext);
     const onPressButtonLogOut = () => {
-        MessageLogout(_clearAccountUser!);
+        logoutMessage(_clearAccountUser!);
     }
 
     return <HeaderMenu title="Perfil de Usuario">

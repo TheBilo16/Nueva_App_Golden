@@ -1,75 +1,70 @@
-import React , { Component , createContext,  } from "react";
+import React , { createContext, FC, useState, useEffect,  } from "react";
 import { AsyncStorage } from "react-native";
 
 //Extra
-import { USER_ID_STORAGE } from "../../../config/system";
-import { IProps , IState, IContext } from "./interfaces";
+import { IContext } from "./interfaces";
+import { KEY_TOKEN, MESSAGES } from "../../../config/Token";
+import { verifyTokenExpiration } from "../../../services/Token";
 
 const AccountContext = createContext<Partial<IContext>>({});
 
-class AccountProvider extends Component<IProps,IState>{
-    constructor(props : IProps){
-        super(props);
-        this.state = {
-            isLoading : true,
-            isLogged : false,
-            userId : ""
-        }
+const AccountProvider : FC = (props) : JSX.Element => {
+    const [ token , setToken ] = useState<string>("");
+    const [ isLoading , setLoading ] = useState<boolean>(true);
+    const [ isLogged , setLogged ] = useState<boolean>(false);
+
+    const _refreshScreen = () : void => {
+        setLoading(true);
+        setLogged(false);
+        _isLogged();
     }
 
-    //Refrescar Pantallas
-    _refreshScreen = () : void => {
-        this.setState({
-            isLoading : true,
-            isLogged : false
-        });
-        this._isLogged();
-    }
-
-    //Verificar Logeo
-    _isLogged = async () : Promise<void> => {
+    const _isLogged = async () : Promise<void> => {
         try{
-            const user = await AsyncStorage.getItem(USER_ID_STORAGE); 
-            if(user){
-                const data = JSON.parse(user);
-                this.setState({ 
-                    isLogged : true, 
-                    userId : data.id 
-                });
+            const tokenSave = await AsyncStorage.getItem(KEY_TOKEN); 
+            if(tokenSave){
+                const token = tokenSave.split(" ")[1];
+
+                switch(verifyTokenExpiration(token)){
+                    case MESSAGES.success : 
+                        setLogged(true);
+                        setToken(token);
+                        break;
+                    case MESSAGES.expired : 
+                        await AsyncStorage.removeItem(KEY_TOKEN);
+                        break;
+                }
             }
-            this.setState({ isLoading : false });
+
+            setLoading(false);
         }catch(e){
             console.log(e);
         }
     }
 
-    //Cerrar Sesion
-    _clearAccountUser = async () : Promise<void> => {
+    const _clearAccountUser = async () : Promise<void> => {
         try{
-            await AsyncStorage.removeItem(USER_ID_STORAGE);
-            this._refreshScreen();
+            await AsyncStorage.removeItem(KEY_TOKEN);
+            _refreshScreen();
         }catch(e){
             console.log(e);
         }        
     }
 
-    componentDidMount(){
-        this._isLogged();
-    }
+    useEffect(() => {
+        _isLogged();
+    },[])
 
-    render(){
-        const { state , props, _isLogged, _clearAccountUser, _refreshScreen } = this;
-        const { children } = props;
-
-        return <AccountContext.Provider value={{
-            ...state,
-            _isLogged,
-            _clearAccountUser,
-            _refreshScreen
-        }}>
-            {children}
-        </AccountContext.Provider>
-    }
+    return <AccountContext.Provider value={{ 
+        token, 
+        isLoading, 
+        isLogged, 
+        _isLogged,
+        _refreshScreen, 
+        _clearAccountUser 
+    }}>
+        { props.children }
+    </AccountContext.Provider>
 }
 
 export {

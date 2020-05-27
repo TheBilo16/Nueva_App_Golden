@@ -41,7 +41,7 @@ class BusSeatSelectionProvider extends Component<{},IState>{
 
         if(selectedSeat){
             this.setState({ seatRows : { row_a : [], row_b : [] }, selectedSeat : false })
-            this.getSeat();
+            this.getSeats();
         }else{
             alert("Selecciona un Asiento Porfavor.");
         }

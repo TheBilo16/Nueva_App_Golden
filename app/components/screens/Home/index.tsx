@@ -11,12 +11,12 @@ import { BusSeatSelectionProvider } from "./context/BusSeatSelectionContext";
 import HeaderMenu from "../../layers/HeaderMenu";
 
 const Home : FC = () : JSX.Element => {
-    const { loading , asientoSeleccionado } = useChekingAsiento();
+    const { loading , seatSelected } = useChekingAsiento();
 
     return <HeaderMenu title="Inicio">
         {
             !loading ?
-                !asientoSeleccionado ? 
+                !seatSelected ? 
                     <BusSeatSelectionProvider>
                         <BusSeatSelection />
                     </BusSeatSelectionProvider> : 

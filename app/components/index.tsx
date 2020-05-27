@@ -14,14 +14,6 @@ import AppStack from "./routes/AppStack";
 //Extras
 import { Secondary } from '../config/colors';
 
-const styles = StyleSheet.create({
-    loading_screen : {
-        flex : 1,
-        alignItems : "center",
-        justifyContent : "center"
-    }
-});
-
 const Main = () : JSX.Element => {
     const { isLoading, isLogged } = useContext(AccountContext);
 
@@ -32,8 +24,9 @@ const Main = () : JSX.Element => {
                     <AppStack />
                 </TravelProvider>
             </UserProvider>
-        }else 
-            return <LoginStack />     
+        }else{
+            return <LoginStack />  
+        }      
     }else{
         return <DotIndicator color={Secondary.text_link} />
     }

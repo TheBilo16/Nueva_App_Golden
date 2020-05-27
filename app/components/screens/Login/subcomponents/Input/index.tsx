@@ -10,11 +10,11 @@ interface IProps {
     title : string,
     icon : string,
     securityPassword? : boolean,
-    onPress(ev : string) : void
+    onChangeText(ev : string) : void
 }
 
 const Input : FC<IProps> = (props) : JSX.Element => {
-    const { title, icon, securityPassword, onPress } = props;
+    const { title, icon, securityPassword, onChangeText } = props;
 
     return <View style={styles.container}>
         <View style={styles.title}>
@@ -24,7 +24,7 @@ const Input : FC<IProps> = (props) : JSX.Element => {
             <TextInput 
                 style={styles.input_text} 
                 secureTextEntry={securityPassword}
-                onChangeText={(ev : string) => onPress(ev)}
+                onChangeText={(ev : string) => onChangeText(ev)}
             />
             <View style={styles.input_icon}>
                 <MaterialIcons name={icon} color={Secondary.text_dark} size={20} />                

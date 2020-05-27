@@ -7,6 +7,9 @@ const width_bars : string = "40%";
 const height_bars : number = 45;
 const height_header : number = height_header_a +height_header_b;
 
+//Screen Travel Routes
+const height_main_title = "37%";
+
 //Global
 const header_menu_padding : number = 24;
 const header_menu_height : number = 55; 
@@ -23,6 +26,10 @@ const screen_home = {
     height_header 
 }
 
+const travelRoutes = {
+    height_main_title
+}
+
 const global = {
     header_menu_padding,
     header_menu_height,
@@ -33,5 +40,6 @@ const global = {
 export {
     screen_home,
     global,
+    travelRoutes,
     height_footer_actions
 }

@@ -1,8 +1,7 @@
-interface IProps {}
 interface IState {
     isLoading : boolean,
     isLogged : boolean,
-    userId : string
+    token : string
 }
 
 interface IContext extends IState {
@@ -13,7 +12,6 @@ interface IContext extends IState {
 }
 
 export {
-    IProps,
     IState,
     IContext
 }

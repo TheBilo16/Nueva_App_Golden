@@ -1,35 +1,21 @@
-import React, { Component, createContext } from "react";
+import React, { createContext, FC, useContext, useState } from "react";
 import { AccountContext } from "../AccountContext";
 
-interface IProps {}
 interface IState {
-    userData : string
+    token : string
 }
 
-const UserContext = createContext<any>(null);
+interface IContext extends IState {}
 
-class UserProvider extends Component<IProps,IState>{
-    constructor(props : IProps){
-        super(props);
-        this.state = {
-            userData : ""
-        }
-    }
+const UserContext = createContext<Partial<IContext>>({});
 
-    static contextType = AccountContext;
+const UserProvider : FC = (props) : JSX.Element => {
+    const account = useContext(AccountContext);
+    const [ token , setToken ] = useState<string>("");
 
-    UNSAFE_componentWillMount(){
-        // const { userId } = this.context;
-    }
-
-    render(){
-        const { props, state } = this;
-        const { children } = props;
-
-        return <UserContext.Provider value={{ ...state }}>
-            {children}
-        </UserContext.Provider>
-    }
+    return <UserContext.Provider value={{ token }}>
+        { props.children }
+    </UserContext.Provider>
 }
 
 export {

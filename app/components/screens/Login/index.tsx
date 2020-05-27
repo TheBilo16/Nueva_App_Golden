@@ -1,5 +1,6 @@
-import React, { useState, useContext, FC } from "react";
+import React, { useState, useContext, FC, useCallback } from "react";
 import { View, AsyncStorage, KeyboardAvoidingView } from "react-native";
+import faker from "faker";
 import styles from "./styles";
 
 //Components
@@ -9,24 +10,27 @@ import ButtonGlobal from "../../layers/ButtonGlobal";
 
 //Extra
 import { AccountContext } from "../../context/AccountContext";
-import { USER_ID_STORAGE } from "../../../config/system";
+import { IUserData } from "../../../interfaces/User";
+import { KEY_TOKEN } from "../../../config/Token";
+import { createToken } from "../../../services/Token";
 
 
 const Login : FC = () : JSX.Element => {
     const { _refreshScreen } = useContext(AccountContext);
-    const [ codeUser, setCode ] = useState<string>("");
+    const [ userCode, setUserCode ] = useState<string>("");
     const [ password, setPassword ] = useState<string>("");
 
-    const dataVerification = async () : Promise<void> => {
-        if(codeUser && password){
+    const dataVerification = useCallback(async () : Promise<void> => {
+        if(userCode && password){
+            const payload : IUserData = {
+                id : faker.random.alphaNumeric(),
+                name : userCode
+            };
 
-            const informationUser = JSON.stringify({
-                id : new Date().getTime(),
-                name : codeUser
-            });
+            const token : string = "Bearer " + createToken(payload);
 
             try{
-                await AsyncStorage.setItem(USER_ID_STORAGE,informationUser);
+                await AsyncStorage.setItem(KEY_TOKEN,token);
                 _refreshScreen!();
             }catch(e){
                 console.log(e);
@@ -34,14 +38,14 @@ const Login : FC = () : JSX.Element => {
         }else{
             alert("Rellene todos los campos porfavor");
         }
-    }
+    },[userCode,password]);
 
     return <View style={styles.container}>
         <Header />
         <KeyboardAvoidingView behavior="padding">
             <View style={styles.container_input}>
-                <Input title="Codigo" icon="person-outline" onPress={setCode} />
-                <Input title="Password" icon="lock-outline" securityPassword={true} onPress={setPassword} />
+                <Input title="Codigo" icon="person-outline" onChangeText={setUserCode} />
+                <Input title="Password" icon="lock-outline" securityPassword={true} onChangeText={setPassword} />
             </View>
             {/* <View style={styles.container_text_link}>
                 <Text style={styles.text_normal}>¿Olvido su contraseña?</Text>

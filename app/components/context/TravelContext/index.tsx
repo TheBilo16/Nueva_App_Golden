@@ -1,30 +1,24 @@
-import React, { createContext, Component } from "react";
+import React, { createContext, FC, useContext } from "react";
 import { AccountContext } from "../AccountContext";
+import { DatabaseContext } from "../DatabaseContext";
 
-interface IProps {}
 interface IState {}
 
 interface IContext extends IState {
-    getParaderos() : object,
+    getParaderos() : void,
 }
 
 const TravelContext = createContext<Partial<IContext>>({});
 
-class TravelProvider extends Component<IProps,IState>{
-    constructor(props : IState){
-        super(props);
-    }
-
-    static contextType = AccountContext;
+const TravelProvider : FC = (props) : JSX.Element => {
+    const database = useContext(DatabaseContext);
+    const account = useContext(AccountContext);
     
-    render(){
-        const { props , state } = this;
-        const { children } = props;
+    const getParaderos = () : void => {}
 
-        return <TravelContext.Provider value={{ ...state }}>
-            {children}
-        </TravelContext.Provider>
-    }
+    return <TravelContext.Provider value={{ getParaderos }}>
+        { props.children }
+    </TravelContext.Provider>
 }
 
 export {

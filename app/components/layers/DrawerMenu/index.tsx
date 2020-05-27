@@ -9,11 +9,11 @@ import UserProfile from "./subcomponents/UserSection";
 
 //Extras
 import { AccountContext } from "../../context/AccountContext";
-import { MessageLogout } from "../../../services";
+import { logoutMessage } from "../../../services/Utility";
 
 const DrawerMenu : FC<any> = (props) : JSX.Element =>{
     const { _clearAccountUser } = useContext(AccountContext);
-    const logout_user = () => MessageLogout(_clearAccountUser!);
+    const logout_user = () => logoutMessage(_clearAccountUser!);
 
     return <View style={{ flex : 1 }}>
         <DrawerContentScrollView {...props} >
