@@ -1,15 +1,26 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useContext } from "react";
 import { View, Image, Text,ScrollView, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons'; 
+import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
+
+//Context
+import { DatabaseContext } from "../../context/DatabaseContext";
 
 //Components
 import HeaderMenu from "../../layers/HeaderMenu";
 import ActionsButtonFooter from "../../layers/ActionsButtonFooter";
-import { useNavigation } from "@react-navigation/native";
 
 const Home : FC = () : JSX.Element => {
+    const { database } = useContext(DatabaseContext);
     const navigation = useNavigation();
+
+    const requestTravelData = async () : Promise<void> => {
+    }
+
+    useEffect(() => {
+        requestTravelData();
+    },[])
 
     return <HeaderMenu title="Home" >
         <View style={styles.content}>

@@ -7,7 +7,8 @@ interface IUserInformation {
     seatSelected : boolean,
     image : string,
     fullName : string,
-    city : string
+    city : string,
+    travelComplete : boolean
 }
 
 export {

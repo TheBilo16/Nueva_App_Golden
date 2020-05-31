@@ -30,11 +30,9 @@ const styles = StyleSheet.create({
         justifyContent : "center",
         alignItems : "center"
     },
-    symbol : {
-        width : 20,
-        height : 20,
-        borderRadius : 10,
-        backgroundColor : "red",
+    image : {
+        width : 32,
+        height : 32
     }
 })
 

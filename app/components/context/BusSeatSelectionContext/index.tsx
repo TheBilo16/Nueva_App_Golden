@@ -3,12 +3,9 @@ import React , { createContext, Component, FC, useState, useEffect, useContext }
 //Context
 import { DatabaseContext } from "../DatabaseContext";
 
-//Extras
+//Interfaces
 import { IContextSeatData } from "./interfaces";
 import { ISeat } from "../../../interfaces/Travel";
-import { UserContext } from "../UserContext";
-import { AsyncStorage } from "react-native";
-import { KEY_USER_ID } from "../../../config/system";
 
 const BusSeatSelectionContext = createContext<Partial<IContextSeatData>>({});
 
@@ -24,20 +21,35 @@ const BusSeatSelectionProvider : FC = (props) : JSX.Element => {
     }
     
     //Al presionar en el boton de elegir
-    const onPressAccept = () : void => {
+    const onPressAccept = async () : Promise<void> => {
         setLoadingInformation(true);
-        AsyncStorage.getItem(KEY_USER_ID)
-            .then(key => {
-                database.firestore().collection("clients").doc(key).update({ seatSelected : true })
-            })
+        const id = database!.auth().currentUser?.uid;
+        const ref = database!.firestore().collection("clients").doc(id)
+        ref.update({ seatSelected : true })
             .catch(console.log)
+    }
+    
+    //Obtener los asientos si el usuario esta en un viaje
+    const getSeats = async () : Promise<void> => {
+        try{
+            const id = database?.auth().currentUser?.uid;
+            const ref = database?.firestore().collection("travel");
+            ref!.where("clients","array-contains",id).onSnapshot(data => {
+                if(data.size > 0){
+                    data.forEach(v => setSeatRows(v.data().seats))                    
+                }
+                //Si no lo encontro entonces no puede acceder a la aplicacion
+                // else{
+                //     database?.auth().signOut();
+                // }
+            })
+        }catch(e){
+            console.log(e);
+        }
     }
 
     useEffect(() => {
-        //Traer asientos respecto al bus... (En proceso...)
-        database!.firestore().collection("designSeat").doc("j0elH4BKgouq8VaE5CjM").onSnapshot(doc => {
-            setSeatRows(doc.data().seats);
-        })
+        getSeats();
     },[])
 
     return <BusSeatSelectionContext.Provider value={{

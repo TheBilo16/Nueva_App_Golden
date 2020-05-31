@@ -1,7 +1,6 @@
 interface IState {
     isLoading : boolean,
-    isLogged : boolean,
-    token : string
+    authenticateUser : boolean
 }
 
 interface IContext extends IState {}

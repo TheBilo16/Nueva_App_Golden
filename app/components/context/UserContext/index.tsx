@@ -3,19 +3,24 @@ import { IUserInformation } from "../../../interfaces/User";
 
 interface IContext {
     userInformation : IUserInformation,
-    updateUserInformation(information : IUserInformation) : void
+    travelDestiny : string,
+    updateUserInformation(information : IUserInformation) : void,
+    updateTravelDestiny(value : string) : void
 }
 
 const UserContext = createContext<Partial<IContext>>({});
 
 const UserProvider : FC = (props) : JSX.Element => {
     const [ userInformation , setUserInformation ] = useState<IUserInformation>();
+    const [ travelDestiny, setTravelDestiny ] = useState<string>();
 
     const updateUserInformation = (information : IUserInformation) : void => {
         setUserInformation(information);
     }
 
-    return <UserContext.Provider value={{ userInformation , updateUserInformation }}>
+    const updateTravelDestiny = (value : string) => setTravelDestiny(value);
+
+    return <UserContext.Provider value={{ userInformation , updateUserInformation, travelDestiny, updateTravelDestiny }}>
         { props.children }
     </UserContext.Provider>
 }

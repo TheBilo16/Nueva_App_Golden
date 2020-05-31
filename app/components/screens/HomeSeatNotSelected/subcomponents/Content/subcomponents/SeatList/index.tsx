@@ -1,9 +1,8 @@
 import React, { FC, useContext } from "react";
-import { View } from "react-native";
+import { View , ScrollView } from "react-native";
 import styles from "./styles";
 
 //Componentes
-import { ScrollView } from "react-native-gesture-handler";
 import { BusSeatSelectionContext } from "../../../../../../context/BusSeatSelectionContext";
 import Seat from "../Seat";
 
@@ -16,8 +15,8 @@ const SeatList : FC = () : JSX.Element => {
             <View style={styles.fila}>
                 {
                     seatRows?.map((v,i) => {
-                        if(v) return <Seat key={i} name={v.name} available={v.available} />
-                        else return <Seat key={i} name="" hide />
+                        if(v) return <Seat key={i} id={i} name={v.name} available={v.available} />
+                        else return <Seat key={i} id={i} hide />
                     })
                 }
             </View>

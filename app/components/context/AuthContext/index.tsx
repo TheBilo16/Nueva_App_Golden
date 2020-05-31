@@ -3,35 +3,27 @@ import React , { createContext, FC, useState, useEffect, useContext } from "reac
 //Extra
 import { IContext } from "./interfaces";
 import { DatabaseContext } from "../DatabaseContext";
-import { AsyncStorage } from "react-native";
-import { KEY_USER_ID } from "../../../config/system";
 
 const AuthContext = createContext<Partial<IContext>>({});
 
 const AuthProvider : FC = (props) : JSX.Element => {
     const { database } = useContext(DatabaseContext);
     const [ isLoading , setLoading ] = useState<boolean>(true);
-    const [ isLogged , setLogged ] = useState<boolean>(false);
+    const [ authenticateUser , setAuthenticateUser ] = useState<boolean>(false);
 
     useEffect(() => {
-        database!.auth().onAuthStateChanged(async (user : any) => {
-            if(user){
-                try{
-                    let key = await AsyncStorage.setItem(KEY_USER_ID,user.uid)
-                    setLogged(true);
-                }catch(e){
-                    console.log(e);
-                }
-            }else{
-                setLogged(false);
-            }
+        const authAccount = database!.auth().onAuthStateChanged(async (user : any) => {
+            if(user) setAuthenticateUser(true);
+            else setAuthenticateUser(false);
             setLoading(false);
         })  
+
+        return authAccount;
     },[])
 
     return <AuthContext.Provider value={{ 
         isLoading, 
-        isLogged 
+        authenticateUser
     }}>
         { props.children }
     </AuthContext.Provider>
