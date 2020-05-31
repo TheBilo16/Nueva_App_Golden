@@ -1,35 +1,27 @@
-import React, { useContext } from "react";
-import { StyleSheet } from "react-native";
+import React, { useContext, Fragment } from "react";
 import { DotIndicator } from "react-native-indicators";
 
-//Context
-import { AccountContext } from './context/AccountContext';
-import { UserProvider } from './context/UserContext';
-import { TravelProvider } from './context/TravelContext';
+//Components
+import Auth from "./routes/Auth";
+import NoAuth from "./routes/NoAuth";
 
-//Stacks Navigators
-import LoginStack from "./routes/LoginStack";
-import AppStack from "./routes/AppStack";
+//Context
+import { AuthContext } from './context/AuthContext';
+import { UserProvider } from "./context/UserContext";
 
 //Extras
 import { Secondary } from '../config/colors';
 
 const Main = () : JSX.Element => {
-    const { isLoading, isLogged } = useContext(AccountContext);
+    const { isLoading , isLogged } = useContext(AuthContext);
 
     if(!isLoading){
-        if(isLogged){
-            return <UserProvider>
-                <TravelProvider>
-                    <AppStack />
-                </TravelProvider>
-            </UserProvider>
-        }else{
-            return <LoginStack />  
-        }      
+        return <UserProvider>
+            { isLogged ? <Auth /> : <NoAuth /> }
+        </UserProvider>
     }else{
-        return <DotIndicator color={Secondary.text_link} />
+        return <Fragment />
     }
 }
 
-export { Main };
+export default Main;

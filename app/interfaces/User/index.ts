@@ -1,9 +1,15 @@
 //Payload del usuario
-interface IUserData {
-    id : string,
-    name : string
+interface IUserInformation {
+    code : string,
+    email : string,
+    password : string,
+    phone : string,
+    seatSelected : boolean,
+    image : string,
+    fullName : string,
+    city : string
 }
 
 export {
-    IUserData
+    IUserInformation
 }

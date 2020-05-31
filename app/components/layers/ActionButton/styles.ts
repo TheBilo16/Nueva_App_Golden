@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Base } from "../../../config/colors";
+import { Base, Utilies } from "../../../config/colors";
 
 const styles = StyleSheet.create({
     button_touch : {
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
         backgroundColor : "#fff",
     },
     button_text_normal : {
-        color : Base.yellow
+        color : Utilies.header
     },
     button_ghost : {
-        backgroundColor : Base.yellow, 
+        backgroundColor : Utilies.header, 
     },
     button_text_ghost : {
         color : "#fff",

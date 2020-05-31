@@ -6,15 +6,21 @@ import styles from "./styles";
 
 interface IProps {
     username : string,
-    image : ImageSourcePropType
+    image : string,
+    city : string
 }
 
 const ImageProfile : FC<IProps> = (props) : JSX.Element =>{
-    const { username , image } = props;
+    const { username , image, city } = props;
 
-    return <View style={styles.content_image}>
-        <Image source={image} style={styles.image} />
-        <Text style={styles.name}>{username}</Text>
+    return <View style={styles.content_profile_head}>
+        <View style={styles.container_image}>
+            <Image source={{ uri : image }} style={styles.image} />
+        </View>
+        <View style={styles.name}>
+            <Text style={[styles.text, styles.fullname]}>{username}</Text>
+            <Text style={[styles.text, styles.city]}>{city}</Text>
+        </View>
     </View>
 }
 

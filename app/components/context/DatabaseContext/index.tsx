@@ -1,15 +1,16 @@
-import React, { Component, createContext, FC } from "react";
-import db from "../../../database";
+import React, { createContext, FC } from "react";
+
+//Config
+import database from "../../../database";
+import { TypeDataBase } from "../../../config/types";
 
 interface IContext {
-    database : any
+    database : TypeDataBase
 }
 
 const DatabaseContext = createContext<Partial<IContext>>({});
 
 const DatabaseProvider : FC = (props) : JSX.Element => {
-    const database = db;
-
     return <DatabaseContext.Provider value={{ database }}>
         { props.children }
     </DatabaseContext.Provider>

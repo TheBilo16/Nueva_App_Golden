@@ -7,9 +7,7 @@ const { header_menu_padding, header_menu_height } = global;
 const styles = StyleSheet.create({
     header : {
         paddingTop: header_menu_padding,
-        backgroundColor : Utilies.header,
-        borderBottomColor: Secondary.borders,
-        borderBottomWidth: 1    
+        backgroundColor : Utilies.header, 
     },
     headerContent : {
         paddingHorizontal: 15,

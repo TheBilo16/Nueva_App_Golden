@@ -9,41 +9,41 @@ interface IStateCoords extends Region {
 }
 
 const useLocationMaps = () => {
-    const { goBack } = useNavigation();
+    const navigation = useNavigation();
     const [ loadingCoords, setLoadingCoords ] = useState<boolean>(true);
-    const [ coords , setCoords ] = useState<IStateCoords>({
-        latitude: 0,
-        longitude: 0,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,        
-    });
+    const [ coords , setCoords ] = useState<IStateCoords>();
+    var mapLoop : any = null;
 
     const requestPermision = async () : Promise<void> => {
         try{
             await requestPermissionsAsync();
         }catch(e){
             console.log(e);
-            goBack();
         }
     }
 
     useEffect(() => {
         requestPermision();
-
-        var mapLoop = navigator.geolocation.watchPosition(
+        mapLoop = navigator.geolocation.watchPosition(
             pos => {
                 console.log(pos.coords);
                 setCoords({
-                    ...coords,
                     latitude : pos.coords.latitude,
-                    longitude : pos.coords.longitude
+                    longitude : pos.coords.longitude,        
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421, 
                 })
-                if(loadingCoords) setLoadingCoords(false);
+
+                if(loadingCoords){
+                    setLoadingCoords(false);
+                }
             },
-            err => goBack(),
+            err => {
+                navigation.goBack();
+            },
             { enableHighAccuracy: true, maximumAge: 1000 }
         )
-        
+
         return () => {
             if(mapLoop) navigator.geolocation.clearWatch(mapLoop);
         }

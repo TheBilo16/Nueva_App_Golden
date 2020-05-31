@@ -5,19 +5,19 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 //Components
-import UserProfile from "./subcomponents/UserSection";
+import UserSection from "./subcomponents/UserSection";
 
-//Extras
-import { AccountContext } from "../../context/AccountContext";
-import { logoutMessage } from "../../../services/Utility";
+//Context
+import { UserContext } from "../../context/UserContext";
+import { DatabaseContext } from "../../context/DatabaseContext";
 
 const DrawerMenu : FC<any> = (props) : JSX.Element =>{
-    const { _clearAccountUser } = useContext(AccountContext);
-    const logout_user = () => logoutMessage(_clearAccountUser!);
+    const { database } = useContext(DatabaseContext);
+    const { userInformation } = useContext(UserContext);
 
     return <View style={{ flex : 1 }}>
         <DrawerContentScrollView {...props} >
-            <UserProfile />
+            <UserSection fullname={userInformation?.fullName!} image={userInformation?.image!} city={userInformation?.city!} />
             <View style={styles.button}>
                 <DrawerItem 
                     label="Home"
@@ -58,7 +58,7 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
             <DrawerItem 
                 label="Log Out"
                 icon={({ color, size }) => <MaterialCommunityIcons name="logout" color={color} size={size} /> }
-                onPress={logout_user}
+                onPress={() => database.auth().signOut() }
             />              
         </View>
     </View>

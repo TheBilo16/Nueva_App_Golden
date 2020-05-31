@@ -1,19 +1,16 @@
-import firebase from "firebase";
+import firebase, { app } from "firebase";
 import "firebase/firestore";
 
-var firebaseConfig = {
-    apiKey: "AIzaSyAjoilw5jhuKkrFu9St5QtaS8-L10g4Ueo",
-    authDomain: "chat-2a617.firebaseapp.com",
-    databaseURL: "https://chat-2a617.firebaseio.com",
-    projectId: "chat-2a617",
-    storageBucket: "chat-2a617.appspot.com",
-    messagingSenderId: "132355550955",
-    appId: "1:132355550955:web:5eda98743938a34b9958ae",
-    measurementId: "G-2WCH029K9S"
-};
+//Config
+import * as firebaseConfigPrivate from "../config/Private";
+import { TypeDataBase } from "../config/types";
 
-firebase.initializeApp(firebaseConfig);
+var firebaseConfig = firebaseConfigPrivate;
+var connection : TypeDataBase;
 
-const db = firebase.firestore();
+if(!firebase.apps.length)
+    connection = firebase.initializeApp(firebaseConfig);
+else
+    connection = firebase.app();
 
-export default db;
+export default connection;

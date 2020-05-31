@@ -1,19 +1,21 @@
 import React, { createContext, FC, useContext, useState } from "react";
-import { AccountContext } from "../AccountContext";
+import { IUserInformation } from "../../../interfaces/User";
 
-interface IState {
-    token : string
+interface IContext {
+    userInformation : IUserInformation,
+    updateUserInformation(information : IUserInformation) : void
 }
-
-interface IContext extends IState {}
 
 const UserContext = createContext<Partial<IContext>>({});
 
 const UserProvider : FC = (props) : JSX.Element => {
-    const account = useContext(AccountContext);
-    const [ token , setToken ] = useState<string>("");
+    const [ userInformation , setUserInformation ] = useState<IUserInformation>();
 
-    return <UserContext.Provider value={{ token }}>
+    const updateUserInformation = (information : IUserInformation) : void => {
+        setUserInformation(information);
+    }
+
+    return <UserContext.Provider value={{ userInformation , updateUserInformation }}>
         { props.children }
     </UserContext.Provider>
 }
