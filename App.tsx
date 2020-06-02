@@ -1,14 +1,12 @@
 import React from 'react';
 import { AuthProvider } from './app/components/context/AuthContext';
 import Main from './app/components';
-import { DatabaseProvider } from './app/components/context/DatabaseContext';
+import "./app/database";
 
 function App() {
-  return <DatabaseProvider>
-    <AuthProvider>
-      <Main />
-    </AuthProvider>
-  </DatabaseProvider>
+  return <AuthProvider>
+    <Main />
+  </AuthProvider>
 }
 
 export default App;

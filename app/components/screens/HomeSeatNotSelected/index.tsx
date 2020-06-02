@@ -7,13 +7,13 @@ import Content from './subcomponents/Content';
 import ActionsButtonFooter from '../../layers/ActionsButtonFooter';
 
 //Context
-import { BusSeatSelectionContext } from '../../context/BusSeatSelectionContext';
+import { SeatSelectionContext } from '../../context/SeatSelectionContext';
 import HeaderMenu from '../../layers/HeaderMenu';
 import Loading from '../../layers/Loading';
 
 //Context
 const BusSeatSelection : FC = () : JSX.Element => {
-    const { onPressAccept, loadingInformation } = useContext(BusSeatSelectionContext);
+    const { onPressAccept, loadingInformation } = useContext(SeatSelectionContext);
 
     return <HeaderMenu title="Elige tu asiento" noDrawerActivate>
         <View style={{ flex : 1, backgroundColor : "#fff" }}>

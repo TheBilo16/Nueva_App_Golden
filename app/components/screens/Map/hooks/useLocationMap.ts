@@ -26,7 +26,7 @@ const useLocationMaps = () => {
         requestPermision();
         mapLoop = navigator.geolocation.watchPosition(
             pos => {
-                console.log(pos.coords);
+                // console.log(pos.coords);
                 setCoords({
                     latitude : pos.coords.latitude,
                     longitude : pos.coords.longitude,        

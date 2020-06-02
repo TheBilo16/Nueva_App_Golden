@@ -11,13 +11,11 @@ import { UserProvider } from "./context/UserContext";
 const Main = () : JSX.Element => {
     const { isLoading , authenticateUser } = useContext(AuthContext);
 
-    if(!isLoading){
-        return <UserProvider>
-            { authenticateUser ? <Auth /> : <NoAuth /> }
-        </UserProvider>
-    }else{
-        return <Fragment />
-    }
+    if(isLoading) return <Fragment />
+
+    return <UserProvider>
+        { authenticateUser ? <Auth /> : <NoAuth /> }
+    </UserProvider>
 }
 
 export default Main;

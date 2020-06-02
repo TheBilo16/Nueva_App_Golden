@@ -1,5 +1,6 @@
-import React, { useState, useContext, FC, useCallback } from "react";
-import { View, KeyboardAvoidingView, AsyncStorage } from "react-native";
+import React, { useState, FC, useCallback } from "react";
+import { View, KeyboardAvoidingView} from "react-native";
+import { auth } from "firebase";
 import styles from "./styles";
 
 //Components
@@ -8,12 +9,9 @@ import Header from "./subcomponents/Header";
 import ButtonGlobal from "../../layers/ButtonGlobal";
 
 //Extra
-import { DatabaseContext } from "../../context/DatabaseContext";
 import Loading from "../../layers/Loading";
-import { KEY_USER_ID } from "../../../config/system";
 
 const Login : FC = () : JSX.Element => {
-    const { database } = useContext(DatabaseContext);
     const [ loading , setLoading ] = useState<boolean>(false);
     const [ userCode , setUserCode ] = useState<string>("");
     const [ password , setPassword ] = useState<string>("");
@@ -22,10 +20,9 @@ const Login : FC = () : JSX.Element => {
         if(userCode && password){
             setLoading(true);
             try{
-                await database.auth().signInWithEmailAndPassword(userCode + "@gmail.com",password);
+                await auth().signInWithEmailAndPassword(userCode + "@gmail.com",password);
             }catch(e){
                 setLoading(false);
-                console.log(e.code);
                 alert(e.message);
             }
         }else{
@@ -44,7 +41,7 @@ const Login : FC = () : JSX.Element => {
                 <ButtonGlobal text="Login" onPress={dataVerification} />
             </KeyboardAvoidingView>    
         </View> 
-        { loading ? <Loading /> : true }
+        { loading ? <Loading /> : null }
     </>
 }
 

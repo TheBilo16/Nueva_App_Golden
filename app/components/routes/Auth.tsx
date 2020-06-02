@@ -1,22 +1,22 @@
-import React, { FC, useState, useEffect, Fragment, useContext } from "react";
-import { AsyncStorage, ActivityIndicator, View } from "react-native";
+import React, { FC, useState, useEffect, useContext } from "react";
+import { ActivityIndicator, View } from "react-native";
+import { auth, firestore } from "firebase";
 
 //Componentes
 import SeatNotSelectedStack from "./Stacks/SeatNotSelectedStack";
 import SelectedSeatStack from "./Stacks/SelectedSeatStack";
-import { BusSeatSelectionProvider } from "../context/BusSeatSelectionContext";
+import { SeatSelectionProvider } from "../context/SeatSelectionContext";
 
 //Context
-import { DatabaseContext } from "../context/DatabaseContext";
 import { UserContext } from "../context/UserContext";
 
 //Extra
 import { Secondary } from "../../config/colors";
-import {TypeDocumentSnapshopt, TypeDocumentData} from "../../config/types";
+import { TypeDocumentSnapshot } from "../../config/types";
+import { TravelProvider } from "../context/TravelContext";
 
 const Auth : FC = () : JSX.Element => {
     //Context
-    const { database } = useContext(DatabaseContext);
     const { updateUserInformation } = useContext(UserContext);
 
     //State
@@ -26,9 +26,9 @@ const Auth : FC = () : JSX.Element => {
     //Verificar si el Asiento esta Seleccionado
     const checkSeatSelected = async () : Promise<void> => {
         try{
-            const key = database!.auth().currentUser?.uid;
-            const ref = database!.firestore().collection("clients").doc(key);
-            ref.onSnapshot((doc : TypeDocumentSnapshopt) => {
+            const key = auth().currentUser?.uid;
+            const ref = firestore().collection("clients").doc(key);
+            ref.onSnapshot((doc : TypeDocumentSnapshot) => {
                 if(doc.exists){
                     let information : any = doc.data()!;
                     updateUserInformation!(information);
@@ -52,11 +52,13 @@ const Auth : FC = () : JSX.Element => {
     }
 
     if(!seatSelected){
-        return <BusSeatSelectionProvider>
+        return <SeatSelectionProvider>
             <SeatNotSelectedStack />
-        </BusSeatSelectionProvider>
+        </SeatSelectionProvider>
     }else{
-        return <SelectedSeatStack />
+        return <TravelProvider>
+            <SelectedSeatStack />
+        </TravelProvider>
     }
 }
 

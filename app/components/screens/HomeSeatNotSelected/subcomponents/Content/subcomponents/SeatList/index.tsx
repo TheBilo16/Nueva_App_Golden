@@ -3,12 +3,12 @@ import { View , ScrollView } from "react-native";
 import styles from "./styles";
 
 //Componentes
-import { BusSeatSelectionContext } from "../../../../../../context/BusSeatSelectionContext";
+import { SeatSelectionContext } from "../../../../../../context/SeatSelectionContext";
 import Seat from "../Seat";
 
 //Hooks
 const SeatList : FC = () : JSX.Element => {
-    const { seatRows } = useContext(BusSeatSelectionContext);
+    const { seatRows } = useContext(SeatSelectionContext);
 
     return <ScrollView style={styles.scroll}>
         <View style={styles.contenedor_asientos}>

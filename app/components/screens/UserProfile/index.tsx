@@ -4,7 +4,6 @@ import styles from "./styles";
 
 //Context
 import { UserContext } from "../../context/UserContext";
-import { DatabaseContext } from "../../context/DatabaseContext";
 
 //Components
 import ImageProfile from "./subcomponents/ImageProfile";
@@ -12,11 +11,13 @@ import InputProfile from "./subcomponents/InputProfile";
 import HeaderMenu from "../../layers/HeaderMenu";
 import ButtonGlobal from "../../layers/ButtonGlobal";
 
+//Utilies
+import { messageLogOut } from "../../../services/Utility";
+
 //Images
 const UserDefault : ImageSourcePropType = require("../../../assets/usuario.png");
 
 const UserProfile : FC = () : JSX.Element => {
-    const { database } = useContext(DatabaseContext);
     const { userInformation } = useContext(UserContext);
     
     return <HeaderMenu title="Perfil de Usuario">
@@ -54,7 +55,7 @@ const UserProfile : FC = () : JSX.Element => {
                 <View style={styles.closeSesion}>
                     <ButtonGlobal 
                         text="Cerrar Sesión"
-                        onPress={() => database?.auth().signOut() }
+                        onPress={messageLogOut}
                     />                    
                 </View>
             </ScrollView>

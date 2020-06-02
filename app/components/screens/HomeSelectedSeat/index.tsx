@@ -1,36 +1,34 @@
-import React, { FC, useEffect, useContext } from "react";
+import React, { FC, useEffect, useContext, Fragment } from "react";
 import { View, Image, Text,ScrollView, TouchableOpacity } from "react-native";
 import { Feather } from '@expo/vector-icons'; 
 import { useNavigation } from "@react-navigation/native";
 import styles from "./styles";
 
-//Context
-import { DatabaseContext } from "../../context/DatabaseContext";
-
 //Components
 import HeaderMenu from "../../layers/HeaderMenu";
 import ActionsButtonFooter from "../../layers/ActionsButtonFooter";
 
+//Context
+import { TravelContext } from "../../context/TravelContext";
+
 const Home : FC = () : JSX.Element => {
-    const { database } = useContext(DatabaseContext);
+    //Hooks
     const navigation = useNavigation();
+    
+    //Context
+    const { loadingTravelData , travelData } = useContext(TravelContext);
 
-    const requestTravelData = async () : Promise<void> => {
-    }
-
-    useEffect(() => {
-        requestTravelData();
-    },[])
+    if(loadingTravelData) return <Fragment />
 
     return <HeaderMenu title="Home" >
         <View style={styles.content}>
             <View style={styles.container_image}>
-                <Image style={styles.image} source={{ uri : "https://i.ytimg.com/vi/W6f5Db6MZp0/maxresdefault.jpg" }} />
+                <Image style={styles.image} source={{ uri : travelData?.image }} />
                 <View style={styles.container}>
                     <View style={styles.title_container}>
                         <View>
-                            <Text style={styles.title}>Ciudad de Lima</Text>
-                            <Text style={styles.date}>Lima / Callao</Text>
+                            <Text style={styles.title}>{travelData?.name}</Text>
+                            <Text style={styles.date}>{travelData?.region}</Text>
                         </View>
                         <TouchableOpacity>
                             <Feather name="star" size={20} color="#fff" />

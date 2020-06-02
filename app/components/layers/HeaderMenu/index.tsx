@@ -4,9 +4,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
 import styles from "./styles";
 
-//Extra
-import { Base } from "../../../config/colors";
-
 interface IProps {
     title : string,
     noDrawerActivate? : boolean

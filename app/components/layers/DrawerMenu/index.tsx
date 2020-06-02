@@ -7,12 +7,13 @@ import styles from "./styles";
 //Components
 import UserSection from "./subcomponents/UserSection";
 
+//Utility
+import { messageLogOut } from "../../../services/Utility";
+
 //Context
 import { UserContext } from "../../context/UserContext";
-import { DatabaseContext } from "../../context/DatabaseContext";
 
 const DrawerMenu : FC<any> = (props) : JSX.Element =>{
-    const { database } = useContext(DatabaseContext);
     const { userInformation } = useContext(UserContext);
 
     return <View style={{ flex : 1 }}>
@@ -58,7 +59,7 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
             <DrawerItem 
                 label="Log Out"
                 icon={({ color, size }) => <MaterialCommunityIcons name="logout" color={color} size={size} /> }
-                onPress={() => database.auth().signOut() }
+                onPress={messageLogOut}
             />              
         </View>
     </View>

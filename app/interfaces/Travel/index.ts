@@ -3,6 +3,15 @@ interface ISeat {
     name : string
 }
 
+interface ITravelData {
+    name : string,
+    image : string,
+    description : string,
+    region : string,
+    coords : any
+}
+
 export {
-    ISeat
+    ISeat,
+    ITravelData
 }

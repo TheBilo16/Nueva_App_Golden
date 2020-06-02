@@ -3,7 +3,7 @@ import { View , Image , ImageSourcePropType, TouchableOpacity, Text } from "reac
 import styles from "./styles";
 
 //Context
-import { BusSeatSelectionContext } from "../../../../../../context/BusSeatSelectionContext";
+import { SeatSelectionContext } from "../../../../../../context/SeatSelectionContext";
 
 //Images
 const AvailableSeat : ImageSourcePropType = require("../../../../../../../assets/icons/check.png");
@@ -18,7 +18,7 @@ interface IProps {
 
 const Seat : FC<IProps> = (props) : JSX.Element => {
     const [ selected , setSelected ] = useState<boolean>(false);
-    const { selectedSeat , updateSelectedSeat } = useContext(BusSeatSelectionContext);
+    const { selectedSeat , updateSelectedSeat } = useContext(SeatSelectionContext);
     const { id, available, name, hide } = props;
 
     const onPress = () => {
