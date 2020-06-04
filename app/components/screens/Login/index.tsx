@@ -6,10 +6,10 @@ import styles from "./styles";
 //Components
 import Input from "./subcomponents/Input";
 import Header from "./subcomponents/Header";
-import ButtonGlobal from "../../layers/ButtonGlobal";
+import ButtonGlobal from "../../templates/ButtonGlobal";
 
 //Extra
-import Loading from "../../layers/Loading";
+import Loading from "../../templates/Loading";
 
 const Login : FC = () : JSX.Element => {
     const [ loading , setLoading ] = useState<boolean>(false);

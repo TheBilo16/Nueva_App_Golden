@@ -6,19 +6,20 @@ import styles from "./styles";
 import Route from "./subcomponents/Route";
 
 //Interfaces
-import { IRoute } from "../../../../../interfaces/Route";
+import { IBusStopData } from "../../../../../interfaces/Travel";
 
 interface IProps {
-    routeList : IRoute[]
+    routeList : IBusStopData[]
 }
 
 const RouteList : FC<IProps> = (props) : JSX.Element => {
     const { routeList } = props;
     
-    return <ScrollView style={styles.scroll}>
-        <View style={styles.container}>
-            <View style={styles.next_container}>
-                { routeList?.map((v,i) => <Route key={i} id={v.id} name={v.name} available={v.available} />) }
+    return <ScrollView>
+        <View style={styles.content}>
+            { routeList?.map((v,i) => <Route key={i} reached={v.reached} time={v.time} name={v.name} coords={v.coords} />) }
+            <View style={styles.content_bar}>
+                <View style={styles.bar}></View>
             </View>
         </View>
     </ScrollView>

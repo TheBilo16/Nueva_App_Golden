@@ -1,63 +1,54 @@
-import React , { createContext, FC, useState, useEffect } from "react";
+import React , { createContext, FC, useState, useEffect, useContext } from "react";
 import { auth, firestore } from "firebase";
 
+//Context
+import { UserContext } from "../UserContext";
+
 //Interfaces
-import { IContextSeatData } from "./interfaces";
-import { ISeat } from "../../../interfaces/Travel";
+import { IContextSeatData, IStateSeat } from "./interfaces";
+import { TypeDocumentData } from "../../../config/types";
+import { TRAVEL } from "../../../config/Private/collections";
 
 const SeatSelectionContext = createContext<Partial<IContextSeatData>>({});
 
 const SeatSelectionProvider : FC = (props) : JSX.Element => {
-    const [ loadingInformation , setLoadingInformation ] = useState<boolean>(false);
-    const [ seatRows , setSeatRows ] = useState<ISeat[]>([]);
-    const [ selectedSeat , setSelectedSeat ] = useState<boolean>(false);
-
-    //Event
-    var eventSeat : any = null;
-
-    const updateSelectedSeat = (value : boolean) : void => {
-        setSelectedSeat(value);
-    }
+    //Context
+    const { travelId } = useContext(UserContext);
     
-    //Al presionar en el boton de elegir
-    const onPressAccept = async (seatId : number) : Promise<void> => {
-        setLoadingInformation(true);
+    //States
+    const [ loadingSeatInformation , setLoadingSeatInformation ] = useState<boolean>(true);
+    const [ sendInformation , setSendInformation ] = useState<boolean>(false);
+    const [ seatInformation , setSeatInformation ] = useState<IStateSeat>();
 
-        try{
-            const id = auth().currentUser?.uid;
-            const ref = firestore().collection("clients").doc(id);
-            await ref.update({ seatSelected : true });
-        }catch(e){
-            console.log(e);
-        }
+    //Al presionar en el boton de elegir
+    const onPressAccept = async () : Promise<void> => {
+        setSendInformation(true);
     }
     
     //Obtener los asientos si el usuario esta en un viaje
-    const getSeatsTravel = async () : Promise<void> => {
-        try{
-            const id = auth().currentUser?.uid;
-            const ref = firestore().collection("travel");
-            eventSeat = ref!.where("clients","array-contains",id).onSnapshot(data => {
-                if(data.size > 0){
-                    data.forEach(v => setSeatRows(v.data().seats))                  
-                }
-            });
-        }catch(e){
-            console.log(e);
+    const getSeatsTravel = (doc : TypeDocumentData) : void => {
+        if(doc.exists){
+            setSeatInformation({
+                seatColumns : doc.data().seatColumns,
+                seats : doc.data().seats
+            })
+            setLoadingSeatInformation(false);             
         }
     }
 
     useEffect(() => {
-        getSeatsTravel();
+        if(travelId != ""){
+            const ref = firestore().collection(TRAVEL);
+            const eventTravel = ref.doc(travelId).onSnapshot(getSeatsTravel,console.log);
 
-        return eventSeat ? eventSeat : () => {};
-    },[])
+            return () => eventTravel();            
+        }
+    },[travelId]);
 
     return <SeatSelectionContext.Provider value={{
-        seatRows,
-        selectedSeat,
-        loadingInformation,
-        updateSelectedSeat,
+        seatInformation,
+        sendInformation,
+        loadingSeatInformation,
         onPressAccept
     }}>
         { props.children }

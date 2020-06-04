@@ -4,16 +4,16 @@ import { View } from 'react-native';
 //Components
 import Header from './subcomponents/Header';
 import Content from './subcomponents/Content';
-import ActionsButtonFooter from '../../layers/ActionsButtonFooter';
+import ActionsButtonFooter from '../../templates/ActionsButtonFooter';
 
 //Context
 import { SeatSelectionContext } from '../../context/SeatSelectionContext';
-import HeaderMenu from '../../layers/HeaderMenu';
-import Loading from '../../layers/Loading';
+import HeaderMenu from '../../templates/HeaderMenu';
+import Loading from '../../templates/Loading';
 
 //Context
 const BusSeatSelection : FC = () : JSX.Element => {
-    const { onPressAccept, loadingInformation } = useContext(SeatSelectionContext);
+    const { onPressAccept, sendInformation } = useContext(SeatSelectionContext);
 
     return <HeaderMenu title="Elige tu asiento" noDrawerActivate>
         <View style={{ flex : 1, backgroundColor : "#fff" }}>
@@ -26,7 +26,7 @@ const BusSeatSelection : FC = () : JSX.Element => {
                 onPressMainButton={onPressAccept!} 
             />
         </View>
-        { loadingInformation ? <Loading /> : null }
+        { sendInformation ? <Loading /> : null }
     </HeaderMenu>
 }
 

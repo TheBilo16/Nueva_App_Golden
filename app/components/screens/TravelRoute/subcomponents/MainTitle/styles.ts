@@ -1,32 +1,46 @@
 import { StyleSheet } from "react-native";
-import { travelRoutes } from "../../../../../config/styles";
-import { Secondary } from "../../../../../config/colors";
+import { Utilies, Secondary } from "../../../../../config/colors";
 
 const styles = StyleSheet.create({
+    DFlex : {
+        justifyContent : "center",
+        alignItems : "center"
+    },
     main_title : {
         width : "100%",
-        // height : travelRoutes.height_main_title,
-        justifyContent: 'center',
-        alignItems : "center",
-        // minHeight : 160,
-        paddingVertical : 30
+        flexDirection : "row",
+        backgroundColor : "#fff",
+        paddingVertical : 20
     },
-    container_title : {
-        width : "80%",
-        alignItems : "center",
-        paddingBottom : 25
+    content_circle : {
+        width : "30%",
+        minWidth : 60
+    },
+    circle : {
+        width : 50,
+        height : 50,
+        borderRadius : 25,
+        backgroundColor : Utilies.header
+    },
+    letter : {
+        fontSize : 24,
+        color : "#fff",
+        fontWeight : "bold"
+    },
+    content_text : {
+        width : "65%",
+        justifyContent : "center"
     },
     title : {
-        color: Secondary.text_dark,
-        fontSize : 19,
-        fontWeight : "bold",
-        marginBottom : 5,
-        textAlign : "center"
+        color : Secondary.text_dark,
+        textTransform : "uppercase",
+        // fontWeight : "bold",
+        fontSize : 16
     },
     date : {
-        color: Secondary.text_link,
-        fontSize : 11,
-        fontWeight : "bold"
+        color : Secondary.text_link,
+        // fontWeight : "bold",
+        fontSize : 10
     }
 });
 

@@ -1,8 +1,8 @@
-import firebase, { app } from "firebase";
+import firebase from "firebase";
 import "firebase/firestore";
 
 //Config
-import * as firebaseConfigPrivate from "../config/Private";
+import * as firebaseConfigPrivate from "../config/Private/key";
 
 var firebaseConfig = firebaseConfigPrivate;
 

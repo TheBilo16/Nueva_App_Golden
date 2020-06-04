@@ -7,10 +7,10 @@ import HomeSelectedSeat from "../../screens/HomeSelectedSeat";
 import TravelRoute from "../../screens/TravelRoute";
 import Map from "../../screens/Map";
 import UserProfile from "../../screens/UserProfile";
-import About from "../../screens/About";
+import QRCode from "../../screens/QRCode";
 
 //Menu
-import DrawerMenu from "../../layers/DrawerMenu";
+import DrawerMenu from "../../templates/DrawerMenu";
 
 const DN = createDrawerNavigator();
 
@@ -18,15 +18,16 @@ const SelectedSeatStack : FC = () => {
     return <NavigationContainer>
         <DN.Navigator 
             initialRouteName="Home"
-            drawerType="slide"
+            drawerType="back"
             keyboardDismissMode="none"
+            openByDefault={false}
             drawerContent={ props => <DrawerMenu {...props} /> }
         >
             <DN.Screen name="Home" component={HomeSelectedSeat} />
             <DN.Screen name="Routes" component={TravelRoute} />
             <DN.Screen name="Map" component={Map} />
             <DN.Screen name="Profile" component={UserProfile} />
-            <DN.Screen name="About" component={About} />
+            <DN.Screen name="QRCode" component={QRCode} />
         </DN.Navigator>
     </NavigationContainer>
 }

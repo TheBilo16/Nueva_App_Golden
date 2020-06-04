@@ -5,8 +5,7 @@ const styles = StyleSheet.create({
     divPress : {
         width : 64,
         height : 64,
-        marginBottom : 5,
-        marginLeft : 5,
+        margin : 2,
         position : "relative",
         justifyContent : "center",
         alignItems : "center"

@@ -7,7 +7,9 @@ const { header_menu_padding, header_menu_height } = global;
 const styles = StyleSheet.create({
     header : {
         paddingTop: header_menu_padding,
-        backgroundColor : Utilies.header, 
+        backgroundColor : "#fff", 
+        borderBottomColor : "rgb(230,230,230)",
+        borderBottomWidth : 1
     },
     headerContent : {
         paddingHorizontal: 15,
@@ -17,9 +19,9 @@ const styles = StyleSheet.create({
         alignItems : "center"
     },
     title_header : {
-        fontSize: 17,
+        fontSize: 16,
         fontWeight : "bold",
-        color: "#fff"
+        color: Secondary.text_dark
     }
 })
 

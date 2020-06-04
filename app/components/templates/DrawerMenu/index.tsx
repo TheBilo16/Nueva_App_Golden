@@ -18,7 +18,7 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
 
     return <View style={{ flex : 1 }}>
         <DrawerContentScrollView {...props} >
-            <UserSection fullname={userInformation?.fullName!} image={userInformation?.image!} city={userInformation?.city!} />
+            <UserSection fullname={userInformation?.fullName!} image={userInformation?.profileImage!} city={userInformation?.city!} />
             <View style={styles.button}>
                 <DrawerItem 
                     label="Home"
@@ -49,15 +49,15 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
             </View>
             <View style={styles.button}>
                 <DrawerItem 
-                    label="Acerca de Nosotros"
-                    icon={({ color, size }) => <MaterialCommunityIcons name="office-building" color={color} size={size} /> }
-                    onPress={() => props.navigation.navigate("About") }
+                    label="Codigo QR"
+                    icon={({ color, size }) => <MaterialCommunityIcons name="qrcode" color={color} size={size} /> }
+                    onPress={() => props.navigation.navigate("QRCode") }
                 />                
             </View>
         </DrawerContentScrollView>
         <View style={styles.button_fixed}>
             <DrawerItem 
-                label="Log Out"
+                label="Cerrar Sesión"
                 icon={({ color, size }) => <MaterialCommunityIcons name="logout" color={color} size={size} /> }
                 onPress={messageLogOut}
             />              

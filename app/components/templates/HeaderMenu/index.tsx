@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
 import styles from "./styles";
+import { Secondary } from "../../../config/colors";
 
 interface IProps {
     title : string,
@@ -28,9 +29,9 @@ const HeaderMenu : FC<IProps> = (props) : JSX.Element => {
             <View style={styles.headerContent}>
                 {
                     icon ? <TouchableOpacity onPress={action}>
-                        <MaterialCommunityIcons name={icon} size={28} color="#fff" />
+                        <MaterialCommunityIcons name={icon} size={28} color={Secondary.text_dark} />
                     </TouchableOpacity> :
-                    <MaterialCommunityIcons name="home" size={28} color="#fff" />
+                    <MaterialCommunityIcons name="home" size={28} color={Secondary.text_dark} />
                 }
                 <View>
                     <Text style={styles.title_header}>{title}</Text>

@@ -1,31 +1,48 @@
 import { StyleSheet } from "react-native";
-
-const padding : number = 10;
+import { Utilies, Secondary } from "../../../../../../../config/colors";
 
 const styles = StyleSheet.create({
-    route_container : {
+    content : {
         width : "100%",
-        height : 40,
+        backgroundColor : "#fff",
+        flexDirection : "row",
+        marginTop : 3
+    },
+    container_ball : {
+        width : "25%",
+        justifyContent : "center",
+        alignItems : "center"
+    },
+    ball : {
+        width : 16,
+        height : 16,
+        backgroundColor : Utilies.header,
+        borderRadius : 8
+    },
+    container_text : {
+        width : "75%",
+        paddingVertical : 10
+    },
+    name : {
+        fontSize : 15,
+        fontWeight : "bold",
+        // textTransform : "uppercase",
+        color : Secondary.text_dark
+    },
+    container_placetime : {
+        width : "100%",
         flexDirection : "row",
         justifyContent : "space-between",
-        alignItems : "center",
-        marginBottom : 10
     },
-    information : {
-        flexDirection : "row",
-        alignItems : "center",
-        paddingHorizontal : 10
+    place : {
+        color: Secondary.text_light_b,
+        fontSize : 10
     },
-    title : {
-        fontSize : 14,
+    time : {
+        color : Secondary.text_link,
         fontWeight : "bold",
-        paddingLeft : padding * 2
-    },
-    btn_press : {
-        width : 40,
-        height : "100%",
-        alignItems : "center",
-        justifyContent : "center"
+        fontSize : 9,
+        marginRight : 15
     }
 })
 

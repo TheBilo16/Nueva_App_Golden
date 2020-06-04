@@ -4,7 +4,7 @@ import { View, ActivityIndicator, Text } from "react-native";
 import styles from "./styles";
 
 //Components
-import HeaderMenu from "../../layers/HeaderMenu";
+import HeaderMenu from "../../templates/HeaderMenu";
 
 //Hooks
 import useLocationMaps from "./hooks/useLocationMap";

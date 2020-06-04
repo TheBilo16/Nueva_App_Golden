@@ -8,8 +8,8 @@ import { UserContext } from "../../context/UserContext";
 //Components
 import ImageProfile from "./subcomponents/ImageProfile";
 import InputProfile from "./subcomponents/InputProfile";
-import HeaderMenu from "../../layers/HeaderMenu";
-import ButtonGlobal from "../../layers/ButtonGlobal";
+import HeaderMenu from "../../templates/HeaderMenu";
+import ButtonGlobal from "../../templates/ButtonGlobal";
 
 //Utilies
 import { messageLogOut } from "../../../services/Utility";
@@ -24,7 +24,7 @@ const UserProfile : FC = () : JSX.Element => {
         <View style={styles.container}>
             <ScrollView>
                 <ImageProfile 
-                    image={userInformation?.image!} 
+                    image={userInformation?.profileImage!} 
                     city={userInformation?.city!}
                     username={userInformation?.fullName!} 
                 />    

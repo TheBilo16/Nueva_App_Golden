@@ -4,11 +4,10 @@ interface IUserInformation {
     email : string,
     password : string,
     phone : string,
-    seatSelected : boolean,
-    image : string,
+    profileImage : string,
+    documentImage : string,
     fullName : string,
-    city : string,
-    travelComplete : boolean
+    city : string
 }
 
 export {

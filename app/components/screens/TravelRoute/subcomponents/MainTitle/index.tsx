@@ -1,23 +1,30 @@
-import React, { FC } from "react";
-import { View, Text, ImageSourcePropType, Image } from "react-native";
-import moment from "moment";
-import faker from "faker";
+import React, { FC, useEffect } from "react";
+import { View, Text } from "react-native";
 import styles from "./styles";
-
-//Images
-const TravelIcon : ImageSourcePropType = require("../../../../../assets/icons/travel_icon.png");
+import moment from "moment";
+import useTimer from "./hooks/useTimer";
 
 interface IProps {
+    TravelTitle : string,
 }
 
-const Header : FC = () : JSX.Element => {
+const Header : FC<IProps> = (props) : JSX.Element => {
+    //Hooks
+    const { time } = useTimer();
+
+    const { TravelTitle } = props;
+
+    const firstLetter = (word : string) : string => word[0];
+    
     return <View style={styles.main_title}>
-        <View style={styles.container_title}>
-            <Text style={styles.title}>Viaje a {`${faker.address.country()} / ${faker.address.city()}`}</Text>
-            <Text style={styles.date}>{moment().format("L")}</Text>
+        <View style={[styles.DFlex,styles.content_circle]}>
+            <View style={[styles.DFlex,styles.circle]}>
+                <Text style={styles.letter}>{firstLetter(TravelTitle)}</Text>
+            </View>
         </View>
-        <View>
-            <Image source={TravelIcon} resizeMode="stretch" />
+        <View style={[styles.content_text]}>
+            <Text style={styles.title}>{TravelTitle}</Text>
+            <Text style={styles.date}>{time}</Text>
         </View>
     </View>
 }
