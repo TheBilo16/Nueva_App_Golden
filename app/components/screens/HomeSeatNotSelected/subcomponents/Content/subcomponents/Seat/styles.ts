@@ -1,37 +1,40 @@
 import { StyleSheet } from "react-native";
-import { Secondary } from "../../../../../../../config/colors";
+import { Secondary, Utilies } from "../../../../../../../config/colors";
 
 const styles = StyleSheet.create({
     divPress : {
-        width : 64,
-        height : 64,
+        width : 56,
+        height : 56,
         margin : 2,
         position : "relative",
         justifyContent : "center",
         alignItems : "center"
     },
     borderDiv : {
-        borderColor : Secondary.text_dark,
-        borderWidth : 1
+        borderColor : Utilies.header,
+        borderWidth : 1,
+        borderRadius : 5    
+    },
+    borderDivSelected : {
+       borderColor : Secondary.text_link
+    },
+    selected : {
+        backgroundColor : Secondary.text_link
+    },
+    text_selected : {
+        color : "#fff",
+        fontSize : 16,
+    },
+    text : {
+        color: Utilies.header,
+        fontSize : 16,
     },
     lock : {
-        borderColor : Secondary.text_light,
-        borderWidth : 1,
-        backgroundColor : "rgb(245,245,245)"
+        backgroundColor : Utilies.header
     },
     text_lock : {
-        color: Secondary.text_light
-    },
-    eleccion : {
-        width : "100%",
-        height : "100%",
-        position : "absolute",
-        justifyContent : "center",
-        alignItems : "center"
-    },
-    image : {
-        width : 32,
-        height : 32
+        color: "#fff",
+        fontSize : 16
     }
 })
 

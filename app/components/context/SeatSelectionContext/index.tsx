@@ -1,5 +1,5 @@
 import React , { createContext, FC, useState, useEffect, useContext } from "react";
-import { auth, firestore } from "firebase";
+import { firestore } from "firebase";
 
 //Context
 import { UserContext } from "../UserContext";

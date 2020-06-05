@@ -1,24 +1,21 @@
-import { StyleSheet } from "react-native";import { screen_home } from "../../../../../config/styles";
-import { Secondary } from "../../../../../config/colors";
-
-const { padding , width_bars, height_bars } = screen_home;
+import { StyleSheet, Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
     container : {
-        flex: 1,
-        paddingHorizontal : padding
+        height : 300,
+        backgroundColor : "#fff",
+        marginTop : 6,
+        paddingVertical : 30,
+        paddingHorizontal : 10,
     },
-    contenedor_barras : {
+    contenedor_asientos : {
         width : "100%",
-        height : height_bars,
-        flexDirection : "row",
-        justifyContent : "space-between",
+    },
+    center : {
+        width : "100%",
+        height : "100%",
+        justifyContent : "center",
         alignItems : "center"
-    },
-    barra : {
-        width : "100%",
-        height : 8,
-        backgroundColor: Secondary.text_dark
     }
 });
 
