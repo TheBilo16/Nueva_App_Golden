@@ -46,7 +46,7 @@ const TravelProvider : FC = (props) : JSX.Element => {
     }
 
     useEffect(() => {
-        if(travelId != ""){
+        if(travelId && travelDestiny){
             const refTravel = firestore().collection(TRAVEL);
             const refLocation = firestore().collection(LOCATION);
 
@@ -58,7 +58,7 @@ const TravelProvider : FC = (props) : JSX.Element => {
                 eventTravel();
             };            
         }
-    },[travelId])
+    },[travelId, travelDestiny])
 
     return <TravelContext.Provider value={{ travelData , loadingTravelData, busStopData, busDateTime }}>
         { props.children }

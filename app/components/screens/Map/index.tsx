@@ -1,6 +1,6 @@
-import React, { FC, useState, useEffect } from "react";
-import MapView, { Marker } from "react-native-maps";
-import { View, ActivityIndicator, Text } from "react-native";
+import React, { FC, Fragment } from "react";
+import MapView, { Marker, Polyline } from "react-native-maps";
+import { View, ActivityIndicator } from "react-native";
 import styles from "./styles";
 
 //Components
@@ -13,21 +13,34 @@ import useLocationMaps from "./hooks/useLocationMap";
 import { Secondary } from "../../../config/colors";
 
 const Map : FC = () : JSX.Element => {
-    const { loadingCoords, coords } = useLocationMaps();
-
+  const { loadingCoords, coords, markers , polyline } = useLocationMaps();
 
     return <HeaderMenu title="Mapa de Viaje" >
         {
-            !loadingCoords ?
+           !loadingCoords ?
                 <View style={styles.container}>
                     <MapView 
                         style={styles.map} 
-                        region={coords}
-                        showsUserLocation={true}
+                        region={coords} 
+                        showsUserLocation={true} 
+                        zoomEnabled={false}
+                        minZoomLevel={10}
                     >
+                        { markers?.map((v,i) => <Marker key={i} coordinate={v.coords} title={v.name} />) }
+                        { 
+                            polyline ? 
+                                <Polyline 
+                                    coordinates={polyline!} 
+                                    strokeColor={Secondary.text_link}
+                                    strokeWidth={3}
+                                    lineJoin="round"
+                                    lineCap="round"
+                                /> 
+                                : <Fragment /> 
+                        }
                     </MapView>
-                </View> 
-            : <View style={styles.container}>
+              </View> :
+            <View style={styles.container}>
                 <ActivityIndicator size={50} color={Secondary.text_link} />
             </View>
         }

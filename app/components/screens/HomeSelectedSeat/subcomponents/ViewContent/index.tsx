@@ -24,7 +24,7 @@ const ViewContent : FC<IProps> = (props) : JSX.Element => {
     const onPressRoute = useCallback(() => navigation.navigate("Routes"), []);
     const onPressMap = useCallback(() => navigation.navigate("Map"), []); 
 
-    return <ScrollView>
+    return <>
         <View style={styles.container_cards}>
             <DateCard title="Hora de Salida" 
                 time={datetime.departureDate.time!} 
@@ -48,7 +48,7 @@ const ViewContent : FC<IProps> = (props) : JSX.Element => {
             onPressButton={onPressRoute}
             onPressMainButton={onPressMap}
         />
-    </ScrollView>
+    </>
 }
 
 export default memo(ViewContent);

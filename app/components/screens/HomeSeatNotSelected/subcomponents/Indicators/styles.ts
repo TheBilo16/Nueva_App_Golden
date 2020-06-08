@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
     indicator_content : {
         width : "100%",
         backgroundColor : "#fff",
-        paddingVertical : 30
+        paddingVertical : 25,
+        flexDirection : "row",
+        justifyContent : "space-around"
     }
 })
 

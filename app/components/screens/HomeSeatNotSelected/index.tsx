@@ -15,7 +15,7 @@ import SelectionButton from './subcomponents/SelectionButton';
 
 //Context
 const BusSeatSelection : FC = () : JSX.Element => {
-    const { onPressAccept, sendInformation } = useContext(SeatSelectionContext);
+    const { sendInformation } = useContext(SeatSelectionContext);
 
     return <HeaderMenu title="Elige tu asiento" noDrawerActivate>
         <View style={styles.content}>
@@ -23,7 +23,7 @@ const BusSeatSelection : FC = () : JSX.Element => {
                 <Header />
                 <Content />
                 <Indicators /> 
-                <SelectionButton onPress={onPressAccept!} />            
+                <SelectionButton />            
             </ScrollView>
         </View>
         { sendInformation ? <Loading /> : null }

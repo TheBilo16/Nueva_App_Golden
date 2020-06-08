@@ -33,10 +33,11 @@
     "ios": {
       "bundleIdentifier": "com.csscreativos.goldenbus",
       "buildNumber": "1.0.0",
-      "config" : {
-        "googleMapsApiKey" : "AIzaSyCewjtlUJ0Abe05LPC5o_tGFiOJVxrMw84"
+      "config": {
+        "googleMapsApiKey": "AIzaSyCewjtlUJ0Abe05LPC5o_tGFiOJVxrMw84"
       },
       "supportsTablet": false
-    }
+    },
+    "description": ""
   }
 }

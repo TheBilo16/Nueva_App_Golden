@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     bar : {
         width : 3,
-        height : "60%",
+        height : "100%",
         backgroundColor : Utilies.header
     }
 })

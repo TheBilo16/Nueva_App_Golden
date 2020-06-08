@@ -9,11 +9,13 @@ interface IProps {
 }
 
 const Header : FC<IProps> = (props) : JSX.Element => {
+    //Title
+    const { TravelTitle } = props;
+    
     //Hooks
     const { time } = useTimer();
-
-    const { TravelTitle } = props;
-
+    
+    //Functions
     const firstLetter = (word : string) : string => word[0];
     
     return <View style={styles.main_title}>
@@ -24,7 +26,7 @@ const Header : FC<IProps> = (props) : JSX.Element => {
         </View>
         <View style={[styles.content_text]}>
             <Text style={styles.title}>{TravelTitle}</Text>
-            <Text style={styles.date}>{time}</Text>
+            <Text style={styles.date}>Hora : {time}</Text>
         </View>
     </View>
 }

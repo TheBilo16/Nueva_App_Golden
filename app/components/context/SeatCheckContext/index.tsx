@@ -25,13 +25,13 @@ const SeatCheckProvider : FC = (props) : JSX.Element => {
     //Verificar si el Asiento esta Seleccionado
     const requestCheckSeatSelected = (doc : TypeDocumentData) : void => {
         const key = auth().currentUser?.uid;
+        console.log("request checl");
 
         if(doc.size == 0){
             alert("Usted no pertenece a ningun Viaje.");
             auth().signOut();
         }else if(doc.size == 1){
             let travelSeats : ISeat[],
-                travelId : string = "",
                 travelDestiny : string = "";
 
             doc.forEach((v : TypeDocumentData) => {
@@ -40,14 +40,19 @@ const SeatCheckProvider : FC = (props) : JSX.Element => {
                 updateTravelId!(v.id);
             });
 
+            let seatSelected = false;
+            
             //Verificar si el usuario tiene un asiento elegido.  
             for(let seat of travelSeats!){
                 if(seat.client == key){
                     updateSeatSelected!(true);
                     updateTravelDestiny!(travelDestiny);
+                    seatSelected = true;
                     break;
                 }
-                
+            }
+
+            if(!seatSelected){
                 updateSeatSelected!(false);
                 updateTravelDestiny!("");
             }

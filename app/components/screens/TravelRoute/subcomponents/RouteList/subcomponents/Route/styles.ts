@@ -25,12 +25,14 @@ const styles = StyleSheet.create({
     },
     name : {
         fontSize : 15,
-        fontWeight : "bold",
+        // fontWeight : "bold",
         // textTransform : "uppercase",
+        paddingRight : 10,
         color : Secondary.text_dark
     },
     container_placetime : {
         width : "100%",
+        paddingTop: 6,
         flexDirection : "row",
         justifyContent : "space-between",
     },
@@ -40,8 +42,7 @@ const styles = StyleSheet.create({
     },
     time : {
         color : Secondary.text_link,
-        fontWeight : "bold",
-        fontSize : 9,
+        fontSize : 8,
         marginRight : 15
     }
 })

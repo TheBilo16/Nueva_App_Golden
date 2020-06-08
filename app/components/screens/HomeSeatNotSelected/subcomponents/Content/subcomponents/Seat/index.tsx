@@ -1,23 +1,25 @@
-import React, { FC,  memo, useState } from "react";
+import React, { FC,  memo, useContext } from "react";
 import { View , TouchableOpacity, Text } from "react-native";
 import styles from "./styles";
+import { SeatSelectionContext } from "../../../../../../context/SeatSelectionContext";
 
 interface IProps {
     id? : number,
     name? : string,
     hide? : boolean,
     client? : string,
+    selected? : boolean
 }   
 
 const Seat : FC<IProps> = (props) : JSX.Element => {
-    const [ selected , setSelected ] = useState(false)
-    const { client , name, hide } = props;
+    //Context
+    const { updateSeatNumber } = useContext(SeatSelectionContext);
+    
+    //Props
+    const { id , client , name, hide, selected } = props;
 
-    const onPress = () => {
-        if(!client){
-            setSelected(!selected);
-        }
-    }
+    //Functions
+    const onPress = () => updateSeatNumber!(id!);
 
     if(hide) return <View style={styles.divPress}></View>
 

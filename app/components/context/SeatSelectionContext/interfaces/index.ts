@@ -7,10 +7,13 @@ interface IStateSeat {
 
 //Context
 interface IContextSeatData {
+    seatNumber : number,
+    activateSendButton : boolean,
     sendInformation : boolean,
     loadingSeatInformation : boolean,
     seatInformation : IStateSeat,
-    onPressAccept() : void
+    onPressAccept() : void,
+    updateSeatNumber(id : number) : void
 }
 
 export {

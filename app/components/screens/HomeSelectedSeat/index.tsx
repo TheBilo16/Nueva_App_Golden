@@ -1,5 +1,5 @@
 import React, { FC, useContext, Fragment } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator,ScrollView } from "react-native";
 import styles from "./styles";
 
 //Components
@@ -19,7 +19,7 @@ const Home : FC = () : JSX.Element => {
     return <HeaderMenu title="Home" >
         <View style={styles.content}>
             {
-                loadingTravelData ? <ActivityIndicator color={Secondary.text_link} /> : <>
+                loadingTravelData ? <ActivityIndicator color={Secondary.text_link} /> : <ScrollView>
                     <HeaderHome 
                         image={travelData?.image!} 
                         region={travelData?.region!} 
@@ -29,7 +29,7 @@ const Home : FC = () : JSX.Element => {
                         description={travelData?.description!} 
                         datetime={busDateTime!} 
                     />
-                </>
+                </ScrollView>
             }
         </View>
     </HeaderMenu>

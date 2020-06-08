@@ -3,9 +3,10 @@ import { Utilies, Secondary } from "../../../../../config/colors";
 
 const styles = StyleSheet.create({
     content_button : {    
+        flex: 1,
         marginHorizontal : 20,
         padding : 10,
-        marginVertical : 10
+        marginVertical : 20
     },
     text_button : {
         textAlign : "center",

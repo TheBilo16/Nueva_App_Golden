@@ -12,8 +12,8 @@ const UserContext = createContext<Partial<IContext>>({});
 const UserProvider : FC = (props) : JSX.Element => {
     const [ userInformation , setUserInformation ] = useState<IUserInformation>();
     const [ seatSelected , setSeatSelected ] = useState<boolean>();
-    const [ travelId, setTravelId ] = useState<string>("");
-    const [ travelDestiny , setTravelDestiny ] = useState<string>("");
+    const [ travelId, setTravelId ] = useState<string>();
+    const [ travelDestiny , setTravelDestiny ] = useState<string>();
 
     const updateTravelId = (value : string) : void => setTravelId(value);
     const updateSeatSelected = (value : boolean) : void => setSeatSelected(value);
