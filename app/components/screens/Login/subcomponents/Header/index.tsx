@@ -1,4 +1,4 @@
-import React , { FC } from "react";
+import React , { FC, memo } from "react";
 import { View, Image, Text, Dimensions } from "react-native";
 import { LinearGradient, Svg, Defs, Stop, Path } from "react-native-svg";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -36,4 +36,4 @@ const HeaderLogin : FC = () : JSX.Element => {
     </View>
 }
 
-export default HeaderLogin;
+export default memo(HeaderLogin);

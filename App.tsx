@@ -3,9 +3,7 @@ import { AuthProvider } from './app/components/context/AuthContext';
 import Main from './app/components';
 import "./app/database";
 
-console.ignoredYellowBox = ['Setting a timer'];
-
-function App() {
+const App = () : JSX.Element => {
   return <AuthProvider>
     <Main />
   </AuthProvider>

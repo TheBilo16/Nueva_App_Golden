@@ -1,15 +1,20 @@
-import React , { FC, useContext, Fragment } from "react";
-import QRCode from "react-native-qrcode-svg";
+import React , { FC } from "react";
+import { View } from "react-native";
+import styles from "./styles";
 
 //Components
 import HeaderMenu from "../../templates/HeaderMenu";
-import { UserContext } from "../../context/UserContext";
+import QRImage from "./subcomponents/QRImage";
+import UserInformation from "./subcomponents/UserInformation";
+import FooterText from "./subcomponents/FooterText";
 
 const Code : FC = () : JSX.Element => {
-    const { userInformation } = useContext(UserContext);
-    
     return <HeaderMenu title="Codigo QR">
-        { userInformation ? <QRCode value={userInformation.documentImage} size={200} /> : null }
+        <View style={styles.main_container}>
+            <UserInformation />
+            <QRImage />  
+            <FooterText />          
+        </View>
     </HeaderMenu>
 }
 
