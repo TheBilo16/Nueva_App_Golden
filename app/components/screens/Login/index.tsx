@@ -9,13 +9,15 @@ import Header from "./subcomponents/Header";
 import ButtonGlobal from "../../templates/ButtonGlobal";
 
 //Extra
-import Loading from "../../templates/Loading";
+import ModalLoading from "../../templates/ModalLoading";
 
 const Login : FC = () : JSX.Element => {
+    //States
     const [ loading , setLoading ] = useState<boolean>(false);
     const [ userCode , setUserCode ] = useState<string>("");
     const [ password , setPassword ] = useState<string>("");
 
+    //Actions
     const dataVerification = useCallback(async () : Promise<void> => {
         if(userCode && password){
             setLoading(true);
@@ -41,7 +43,7 @@ const Login : FC = () : JSX.Element => {
                 <ButtonGlobal text="Login" onPress={dataVerification} />
             </KeyboardAvoidingView>    
         </View> 
-        { loading ? <Loading /> : null }
+        { loading ? <ModalLoading /> : null }
     </>
 }
 

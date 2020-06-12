@@ -5,31 +5,32 @@ import styles from "./styles";
 //Components
 import HeaderMenu from "../../templates/HeaderMenu";
 import HeaderHome from "./subcomponents/HeaderHome";
-
+import ViewContent from "./subcomponents/ViewContent";
+import ScreenLoading from "../../templates/ScreenLoading";
 
 //Context
 import { TravelContext } from "../../context/TravelContext";
-import ViewContent from "./subcomponents/ViewContent";
-import { Secondary } from "../../../config/colors";
 
 const Home : FC = () : JSX.Element => {
     //Context
     const { loadingTravelData , travelData, busDateTime } = useContext(TravelContext);
 
-    return <HeaderMenu title="Home" >
+    return <HeaderMenu title="Inicio" >
         <View style={styles.content}>
             {
-                loadingTravelData ? <ActivityIndicator color={Secondary.text_link} /> : <ScrollView>
-                    <HeaderHome 
-                        image={travelData?.image!} 
-                        region={travelData?.region!} 
-                        name={travelData?.name!} 
-                    />
-                    <ViewContent 
-                        description={travelData?.description!} 
-                        datetime={busDateTime!} 
-                    />
-                </ScrollView>
+                loadingTravelData ? 
+                    <ScreenLoading /> : 
+                    <ScrollView>
+                        <HeaderHome 
+                            image={travelData?.image!} 
+                            region={travelData?.region!} 
+                            name={travelData?.name!} 
+                        />
+                        <ViewContent 
+                            description={travelData?.description!} 
+                            datetime={busDateTime!} 
+                        />
+                    </ScrollView>
             }
         </View>
     </HeaderMenu>

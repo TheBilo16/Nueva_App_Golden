@@ -1,21 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { requestPermissionsAsync } from "expo-location";
+import { requestPermissionsAsync, PermissionResponse } from "expo-location";
 import { Region, LatLng } from "react-native-maps";
 
 //Context
 import { TravelContext } from "../../../context/TravelContext";
 
 //Interfaces
-interface IStateCoords extends Region {
-    latitude: number,
-    longitude: number,
-}
-
-interface IMarkerData {
-    name : string,
-    coords : LatLng
-}
+import { IStateCoords, IMarkerData } from "../interfaces";
 
 const useLocationMaps = () => {
     //Context
@@ -23,9 +15,16 @@ const useLocationMaps = () => {
     
     //Hooks
     const navigation = useNavigation();
+
+    //Variables
+    const configPosition = { 
+        enableHighAccuracy: true, 
+        maximumAge: 1000 
+    }
     
     //State
-    // const [ permision , setPermision ] = useState<boolean>(false);
+    const [ applicationPermits , setApplicationPermits ] = useState<boolean>(false);
+    const [ locationPermits , setLocationPermits ] = useState<boolean>(true);
     const [ loadingCoords, setLoadingCoords ] = useState<boolean>(true);
     const [ coords , setCoords ] = useState<IStateCoords>();
     const [ markers , setMarkers ] = useState<IMarkerData[]>();
@@ -37,25 +36,36 @@ const useLocationMaps = () => {
     //Obtener Permisos
     const requestPermision = async () : Promise<void> => {
         try{
-            await requestPermissionsAsync();
+            const permission : PermissionResponse = await requestPermissionsAsync();
+
+            if(permission.status === "granted") setApplicationPermits(true);
+            else setApplicationPermits(false);
         }catch(e){
             console.log(e);
+            setApplicationPermits(false);
         }
     }
 
-    //Obtener Posicion
-    const getPosition = (pos : Position) => {
-        // console.log(pos.coords);
-        setCoords({
-            latitude : pos.coords.latitude,
-            longitude : pos.coords.longitude,        
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421, 
-        })
+    //Error al Obtener la Posicion
+    const getPositionError = (err : PositionError) =>{ 
+        setLocationPermits(false);
+        setLoadingCoords(true);
     }
 
-    //Error al Obtener la Posicion
-    const getPositionError = (err : PositionError) => navigation.goBack()
+    //Obtener Posicion
+    const getPosition = () => {
+        geolocation = navigator.geolocation.watchPosition( (pos : Position) => {
+            setLocationPermits(true);
+
+            setCoords({
+                latitude : pos.coords.latitude,
+                longitude : pos.coords.longitude,        
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,   
+            });
+
+        },getPositionError,configPosition);
+    }
 
     //Obtener las coordenadas de las rutas
     const setMarkersData = () => {
@@ -83,27 +93,36 @@ const useLocationMaps = () => {
         }
     }
   
-    useEffect(() => {
-        requestPermision();
+    /**Effects**/
 
-        navigation.addListener("focus", () => {
-            const configPosition = { enableHighAccuracy: true, maximumAge: 1000 }
-            geolocation = navigator.geolocation.watchPosition(getPosition, getPositionError,configPosition);        
-        })
-        
-        return () => {
-            navigator.geolocation.clearWatch(geolocation!);
-            navigation.removeListener("focus",() => {});
+    // - PERMISOS / COORDENADAS
+    useEffect(() => {
+        requestPermision();  
+
+        if(applicationPermits){
+            getPosition();
+            navigation.addListener("focus",getPosition);
+            
+            return () => {
+                navigator.geolocation.clearWatch(geolocation);
+                navigation.removeListener("focus",() => {});
+            }         
         }
-    }, []);
+        
+    }, [applicationPermits]);
     
+    // - DATOS DE LOS PARADEROS
     useEffect(() => setMarkersData() ,[busStopData, coords]);
 
     return {
         loadingCoords,
+        locationPermits,
         coords,
         markers,
-        polyline
+        polyline,
+        applicationPermits,
+        requestPermision,
+        getPosition
     }
 }
 

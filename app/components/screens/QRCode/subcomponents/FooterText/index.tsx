@@ -9,7 +9,7 @@ const FooterText = () : JSX.Element => {
     const { userInformation } = useContext(UserContext);
     
     return <View style={styles.container_footer}>
-        <Text style={styles.dni}>{userInformation?.code}</Text>
+        <Text style={styles.dni}>{userInformation?.dni}</Text>
         <Text style={styles.text}>Mi Documento</Text>
     </View>
 }

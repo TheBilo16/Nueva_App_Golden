@@ -14,7 +14,7 @@ const Header : FC<IProps> = (props) : JSX.Element => {
     
     //Hooks
     const { time } = useTimer();
-    
+
     //Functions
     const firstLetter = (word : string) : string => word[0];
     
@@ -26,7 +26,7 @@ const Header : FC<IProps> = (props) : JSX.Element => {
         </View>
         <View style={[styles.content_text]}>
             <Text style={styles.title}>{TravelTitle}</Text>
-            <Text style={styles.date}>Hora : {time}</Text>
+            <Text style={styles.date}>{time}</Text>
         </View>
     </View>
 }

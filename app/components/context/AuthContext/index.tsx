@@ -20,10 +20,12 @@ const AuthProvider : FC = (props) : JSX.Element => {
         return () => authAccount();
     },[]);
 
-    return <AuthContext.Provider value={{ 
-        isLoading, 
-        authenticateUser
-    }}>
+    return <AuthContext.Provider 
+        value={{ 
+            isLoading, 
+            authenticateUser
+        }}
+    >
         { props.children }
     </AuthContext.Provider>
 }

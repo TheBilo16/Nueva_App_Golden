@@ -1,50 +1,36 @@
-import React, { FC, Fragment } from "react";
-import MapView, { Marker, Polyline } from "react-native-maps";
-import { View, ActivityIndicator } from "react-native";
-import styles from "./styles";
+import React, { FC } from "react";
+import { Entypo, AntDesign } from '@expo/vector-icons';
 
 //Components
 import HeaderMenu from "../../templates/HeaderMenu";
+import ScreenLoading from "../../templates/ScreenLoading";
+import ErrorScreen from "./ErrorScreen";
+import GeolocationScreen from "./GeolocationScreen";
 
 //Hooks
 import useLocationMaps from "./hooks/useLocationMap";
-
-//Extra
 import { Secondary } from "../../../config/colors";
 
 const Map : FC = () : JSX.Element => {
-  const { loadingCoords, coords, markers , polyline } = useLocationMaps();
+  const { loadingCoords, coords, markers , polyline, applicationPermits, locationPermits, getPosition, requestPermision } = useLocationMaps();
 
-    return <HeaderMenu title="Mapa de Viaje" >
-        {
-           !loadingCoords ?
-                <View style={styles.container}>
-                    <MapView 
-                        style={styles.map} 
-                        region={coords} 
-                        showsUserLocation={true} 
-                        zoomEnabled={false}
-                        minZoomLevel={10}
-                    >
-                        { markers?.map((v,i) => <Marker key={i} coordinate={v.coords} title={v.name} />) }
-                        { 
-                            polyline ? 
-                                <Polyline 
-                                    coordinates={polyline!} 
-                                    strokeColor={Secondary.text_link}
-                                    strokeWidth={3}
-                                    lineJoin="round"
-                                    lineCap="round"
-                                /> 
-                                : <Fragment /> 
-                        }
-                    </MapView>
-              </View> :
-            <View style={styles.container}>
-                <ActivityIndicator size={50} color={Secondary.text_link} />
-            </View>
-        }
-    </HeaderMenu>
+    if(!applicationPermits){
+        return <ErrorScreen
+            icon={<AntDesign name="lock" size={80} color={Secondary.text_link} />} 
+            title="La aplicacion no tiene los permisos necesarios."
+            onPress={requestPermision}
+        />
+    }else if(!locationPermits){
+        return <ErrorScreen
+            icon={<Entypo name="location" size={96} color={Secondary.text_link} />} 
+            title="El GPS no esta activado."
+            onPress={getPosition}
+        />
+    }else{
+        return <HeaderMenu title="Mapa de Viaje" >
+            { !loadingCoords ? <GeolocationScreen coords={coords!} markers={markers!} polyline={polyline!} /> : <ScreenLoading /> }
+        </HeaderMenu>
+    }
 }
 
 export default Map;

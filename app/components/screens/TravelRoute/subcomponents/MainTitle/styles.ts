@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         paddingVertical : 20
     },
     content_circle : {
-        width : "30%",
+        width : "25%",
         minWidth : 60
     },
     circle : {
@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
         fontWeight : "bold"
     },
     content_text : {
-        width : "65%",
+        width : "70%",
         justifyContent : "center"
     },
     title : {
         color : Secondary.text_dark,
         textTransform : "uppercase",
-        // fontWeight : "bold",
+        fontWeight : "bold",
         fontSize : 16
     },
     date : {

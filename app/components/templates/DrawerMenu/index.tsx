@@ -21,7 +21,7 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
             <UserSection fullname={userInformation?.fullName!} image={userInformation?.profileImage!} city={userInformation?.city!} />
             <View style={styles.button}>
                 <DrawerItem 
-                    label="Home"
+                    label="Inicio"
                     icon={({ color, size }) => <MaterialCommunityIcons name="home-outline" color={color} size={size} /> }
                     onPress={() => props.navigation.navigate("Home") }
                 />                

@@ -6,7 +6,7 @@ import styles from "./styles";
 import Header from './subcomponents/Header';
 import Content from './subcomponents/Content';
 import HeaderMenu from '../../templates/HeaderMenu';
-import Loading from '../../templates/Loading';
+import ModalLoading from '../../templates/ModalLoading';
 import Indicators from './subcomponents/Indicators';
 
 //Context
@@ -26,7 +26,7 @@ const BusSeatSelection : FC = () : JSX.Element => {
                 <SelectionButton />            
             </ScrollView>
         </View>
-        { sendInformation ? <Loading /> : null }
+        { sendInformation ? <ModalLoading /> : null }
     </HeaderMenu>
 }
 
