@@ -3,6 +3,7 @@ import { View , TouchableOpacity, Text } from "react-native";
 import styles from "./styles";
 import { SeatSelectionContext } from "../../../../../../context/SeatSelectionContext";
 
+//Interfaces
 interface IProps {
     id? : number,
     name? : string,

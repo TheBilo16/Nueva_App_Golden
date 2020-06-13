@@ -20,7 +20,6 @@ const Content : FC = () : JSX.Element => {
                                 data={seatInformation?.seats}
                                 renderItem={({ item , index }) => {
                                     let seatElement : JSX.Element;
-
                                     if(item){
                                         if(seatNumber === index)
                                             seatElement = <Seat id={index} selected name={item.name} client={item.client} />

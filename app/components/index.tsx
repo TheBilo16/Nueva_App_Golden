@@ -21,7 +21,7 @@ const Main = () : JSX.Element => {
             </SeatCheckProvider>
         </UserProvider>
     }else{
-        return <NoAuth /> 
+        return <NoAuth />
     }
 }
 
