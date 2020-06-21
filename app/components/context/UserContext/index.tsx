@@ -30,7 +30,7 @@ const UserProvider : FC = (props) : JSX.Element => {
             
             return () => eventClient();
         }
-    },[seatSelected])
+    },[seatSelected]);
 
     return <UserContext.Provider value={{ 
         userInformation,

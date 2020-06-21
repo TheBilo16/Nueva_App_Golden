@@ -10,7 +10,7 @@ const QRImage : FC = (props) : JSX.Element => {
     const { userInformation } = useContext(UserContext);
 
     return <View style={styles.qr_container}>
-        <QRCode value={userInformation?.documentImage} size={180} />
+        <QRCode value={userInformation?.documentImage.url!} size={180} />
     </View>
 }
 

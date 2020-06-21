@@ -1,3 +1,8 @@
+interface IDocumentImage {
+    name : string,
+    url : string
+}
+
 //Payload del usuario
 interface IUserInformation {
     code : string,
@@ -6,7 +11,7 @@ interface IUserInformation {
     password : string,
     phone : string,
     profileImage : string,
-    documentImage : string,
+    documentImage : IDocumentImage,
     fullName : string,
     city : string
 }

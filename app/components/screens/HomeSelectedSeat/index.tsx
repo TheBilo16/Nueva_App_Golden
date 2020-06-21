@@ -22,7 +22,7 @@ const Home : FC = () : JSX.Element => {
                     <ScreenLoading /> : 
                     <ScrollView>
                         <HeaderHome 
-                            image={travelData?.image!} 
+                            image={travelData?.image.url!} 
                             region={travelData?.region!} 
                             name={travelData?.name!} 
                         />

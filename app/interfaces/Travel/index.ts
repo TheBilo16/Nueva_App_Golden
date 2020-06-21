@@ -1,5 +1,3 @@
-import { firestore } from "firebase";
-
 //Asiento
 interface ISeat {
   name : string,
@@ -27,10 +25,16 @@ interface IBusStopData {
   time : string
 }
 
+//Image
+interface IImage {
+  url : string,
+  name : string
+}
+
 //Datos de la DB respecto al lugar destino
 interface ITravelData {
   name : string,
-  image : string,
+  image : IImage,
   description : string,
   region : string,
   coords : any

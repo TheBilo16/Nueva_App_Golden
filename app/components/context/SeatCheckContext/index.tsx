@@ -25,7 +25,6 @@ const SeatCheckProvider : FC = (props) : JSX.Element => {
     //Verificar si el Asiento esta Seleccionado
     const requestCheckSeatSelected = (doc : TypeDocumentData) : void => {
         const key = auth().currentUser?.uid;
-        console.log("request checl");
 
         if(doc.size == 0){
             alert("Usted no pertenece a ningun Viaje.");
@@ -52,6 +51,7 @@ const SeatCheckProvider : FC = (props) : JSX.Element => {
                 }
             }
 
+            //Si el asiento no esta seleccionado
             if(!seatSelected){
                 updateSeatSelected!(false);
                 updateTravelDestiny!("");

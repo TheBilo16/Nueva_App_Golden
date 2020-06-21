@@ -11,7 +11,7 @@ import { IStateCoords, IMarkerData } from "../interfaces";
 
 const useLocationMaps = () => {
     //Context
-    const { busStopData } = useContext(TravelContext);
+    const { busStopData , travelData } = useContext(TravelContext);
     
     //Hooks
     const navigation = useNavigation();
@@ -84,6 +84,11 @@ const useLocationMaps = () => {
                 
                 line.push({ latitude : U, longitude : k });
             });
+
+            //Agregar Coordenadas del Destino
+            const { name } = travelData!;
+            mark.push({ name, coords : travelData?.coords , destiny : true });
+            line.push({ latitude : travelData?.coords.U , longitude : travelData?.coords.k })
             
             const { latitude , longitude } = coords!;
         

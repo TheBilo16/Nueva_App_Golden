@@ -7,7 +7,8 @@ interface IStateCoords extends Region {
 
 interface IMarkerData {
     name : string,
-    coords : LatLng
+    coords : LatLng,
+    destiny? : boolean
 }
 
 export {

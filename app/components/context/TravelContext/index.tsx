@@ -1,5 +1,5 @@
 import React , { createContext, FC, useEffect, useState, useContext } from "react";
-import { firestore, auth } from "firebase";
+import { firestore } from "firebase";
 
 //Interfaces
 import { ITravelData, IBusStopData, IBusDateTimeData } from "../../../interfaces/Travel";

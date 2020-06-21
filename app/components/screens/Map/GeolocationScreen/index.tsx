@@ -6,6 +6,9 @@ import styles from "./styles";
 //Extra
 import { Secondary } from "../../../../config/colors";
 
+//Image
+const MarkerImage = require("../../../../assets/map/marcador.png");
+
 //Interfaces
 import { IMarkerData, IStateCoords } from "../interfaces"
 
@@ -18,19 +21,16 @@ interface IProps {
 const GeolocationScreen : FC<IProps> = (props) : JSX.Element => {
     //Props
     const { markers, polyline , coords } = props;
-    
-    //Variables
-    const MapViewConfig = {
-        initialRegion : coords,
-        showsUserLocation : true,
-        zoomEnabled : true,
-        minZoomLevel : 10
-    }
 
     return <View style={styles.container}>
-        <MapView style={styles.map} initialRegion={coords} showsUserLocation={true} zoomControlEnabled={true} minZoomLevel={10} >
-            { markers?.map((v,i) => <Marker key={i} coordinate={v.coords} title={v.name} />) }
-            <Polyline coordinates={polyline!} strokeColor={Secondary.text_link} strokeWidth={3} />
+        <MapView style={styles.map} initialRegion={coords} showsUserLocation={true} zoomControlEnabled={false} minZoomLevel={10} >
+            { 
+                markers?.map((v,i) => {
+                    if(v.destiny) return <Marker key={i} image={MarkerImage} title={v.name} coordinate={v.coords} />
+                    return <Marker key={i} coordinate={v.coords} title={v.name} />
+                }) 
+            }
+            <Polyline coordinates={polyline!} strokeColor={Secondary.text_dark} strokeWidth={4} />
         </MapView>
     </View> 
 }

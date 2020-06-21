@@ -1,11 +1,11 @@
-const apiKey = "AIzaSyAjoilw5jhuKkrFu9St5QtaS8-L10g4Ueo";
-const authDomain = "chat-2a617.firebaseapp.com";
-const databaseURL = "https://chat-2a617.firebaseio.com";
-const projectId = "chat-2a617";
-const storageBucket = "chat-2a617.appspot.com";
-const messagingSenderId = "132355550955";
-const appId = "1:132355550955:web:5eda98743938a34b9958ae";
-const measurementId = "G-2WCH029K9S";
+const apiKey = "AIzaSyBC4_saq-r4xMl6gQgVUCeKqpRlBYN5qY8";
+const authDomain = "test-golden-62318.firebaseapp.com";
+const databaseURL = "https://test-golden-62318.firebaseio.com";
+const projectId = "test-golden-62318";
+const storageBucket = "test-golden-62318.appspot.com";
+const messagingSenderId = "762635858749";
+const appId = "1:762635858749:web:e9d22626932539b5400b54";
+const measurementId = "G-PHHYLF7ZQK";
 
 export {
     apiKey,

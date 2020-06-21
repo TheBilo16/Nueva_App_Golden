@@ -22,7 +22,7 @@ const Login : FC = () : JSX.Element => {
         if(userCode && password){
             setLoading(true);
             try{
-                await auth().signInWithEmailAndPassword(userCode + "@gmail.com",password);
+                await auth().signInWithEmailAndPassword(userCode + "-app-golden@gmail.com",password);
             }catch(e){
                 setLoading(false);
                 alert(e.message);
