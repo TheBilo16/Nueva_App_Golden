@@ -20,14 +20,17 @@ const UserProvider : FC = (props) : JSX.Element => {
     const updateTravelDestiny = (value : string) : void => setTravelDestiny(value);
 
     //Obtener Datos del usuario
-    const requestUserData = (client : TypeDocumentData) : void => setUserInformation(client.data());  
+    const requestUserData = (client : TypeDocumentData) : void => {
+        console.log(client.data());
+        setUserInformation(client.data());  
+    }
 
     useEffect(() => {
         if(seatSelected){
             const ref = firestore().collection(CLIENT);
             const key = auth().currentUser?.uid;
             const eventClient = ref.doc(key).onSnapshot(requestUserData,console.log);   
-            
+
             return () => eventClient();
         }
     },[seatSelected]);

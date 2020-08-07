@@ -10,7 +10,7 @@ const UserInformation : FC = (props) : JSX.Element => {
 
     return <View style={styles.user_information}>
         <View style={styles.container_image}>
-            <Image source={{ uri : userInformation?.profileImage }} style={styles.image} />
+            <Image source={{ uri : userInformation?.profileImage.url }} style={styles.image} />
         </View>
         <View style={styles.container_text}>
             <Text style={styles.fullname}>{userInformation?.fullName}</Text>

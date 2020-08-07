@@ -11,7 +11,7 @@ const Content : FC = () : JSX.Element => {
     const { seatInformation , loadingSeatInformation , seatNumber } = useContext(SeatSelectionContext);
 
     return <View style={styles.container}>
-        <ScrollView>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} >
             <View style={styles.contenedor_asientos}>
                 <View style={styles.center}>
                     {

@@ -10,7 +10,7 @@ interface IUserInformation {
     email : string,
     password : string,
     phone : string,
-    profileImage : string,
+    profileImage : IDocumentImage,
     documentImage : IDocumentImage,
     fullName : string,
     city : string

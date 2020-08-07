@@ -24,7 +24,7 @@ const UserProfile : FC = () : JSX.Element => {
         <View style={styles.container}>
             <ScrollView>
                 <ImageProfile 
-                    image={userInformation?.profileImage!} 
+                    image={userInformation?.profileImage.url!} 
                     city={userInformation?.city!}
                     username={userInformation?.fullName!} 
                 />    

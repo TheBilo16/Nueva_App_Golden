@@ -18,7 +18,7 @@ const DrawerMenu : FC<any> = (props) : JSX.Element =>{
 
     return <View style={{ flex : 1 }}>
         <DrawerContentScrollView {...props} >
-            <UserSection fullname={userInformation?.fullName!} image={userInformation?.profileImage!} city={userInformation?.city!} />
+            <UserSection fullname={userInformation?.fullName!} image={userInformation?.profileImage.url!} city={userInformation?.city!} />
             <View style={styles.button}>
                 <DrawerItem 
                     label="Inicio"
